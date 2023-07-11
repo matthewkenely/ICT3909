@@ -9,138 +9,162 @@ import os
 from enum import Enum
 import pandas as pd
 
-#Import Akisato Kimura <akisato@ieee.org> implementation of Itti's Saliency Map Generator
-#Original Source: https://github.com/akisatok/pySaliencyMap
+# Akisato Kimura <akisato@ieee.org> implementation of Itti's Saliency Map Generator -- https://github.com/akisatok/pySaliencyMap
 import pySaliencyMap
 
-#-------------------------------------------------
-#Start Global Variables
-#-------------------------------------------------
 
-segmentsEntropies = []
-segmentsCoords = []
+# Global Variables
+segments_entropies = []
+segments_coords = []
 
-# dir = "/Users/dylanseychell/dev/MSRA10K_Imgs_GT/MSRA10K_Imgs_GT/Imgs"
-# dir2 = "/Users/dylanseychell/dev/shelves"
-# dir3 = "/Users/dylanseychell/dev/COTS/COTSDataset/Part2-MultipleObjects"
-
-segDim = 9
+seg_dim = 9
 segments = []
-gtSegments = []
+gt_segments = []
 dws = []
-saraList = []
+sara_list = []
 
-evalList = []
-labelsEvalList = ['Image','Index','Rank','Quartile','isGT','Outcome']
+eval_list = []
+labels_eval_list = ['Image', 'Index', 'Rank', 'Quartile', 'isGT', 'Outcome']
 
-outcomeList = []
-labelsOutcomeList = ['Image', 'FN', 'FP', 'TN', 'TP']
+outcome_list = []
+labels_outcome_list = ['Image', 'FN', 'FP', 'TN', 'TP']
 
-dataframeCollection = {}
-errorCount = 0
+dataframe_collection = {}
+error_count = 0
 
-#-------------------------------------------------
-#SaRa Initial Functions
-#-------------------------------------------------
 
-def generateSegments(img, segCount, depth=None):
+# SaRa Initial Functions
+def generate_segments(img, seg_count) -> list:
+    '''
+    Given an image img and the desired number of segments seg_count, this 
+    function divides the image into segments and returns a list of segments.
+    '''
+
     segments = []
-    segmentCount = segCount
+    segment_count = seg_count
     index = 0
 
-    wInterval = int(img.shape[1]/segmentCount)
-    hInterval = int(img.shape[0]/segmentCount)
+    w_interval = int(img.shape[1] / segment_count)
+    h_interval = int(img.shape[0] / segment_count)
 
-    for i in range(segmentCount):
-        for j in range(segmentCount):
-            #Note: img[TopRow:BottomRow, FirstColumn:LastColumn]
-            tempSegment = img[int(hInterval*i):int(hInterval*(i+1)), int(wInterval*j):int(wInterval*(j+1))]
-            #cv2.imshow("Crop" + str(i) + str(j), tempSegment)
-            #coordTup = (index, x1, y1, x2, y2)
-            coordTup = (index, int(wInterval*j), int(hInterval*i), int(wInterval*(j+1)), int(hInterval*(i+1)))
-            segmentsCoords.append(coordTup)
-            segments.append(tempSegment)
-            index+=1
+    for i in range(segment_count):
+        for j in range(segment_count):
+            # Note: img[TopRow:BottomRow, FirstColumn:LastColumn]
+            temp_segment = img[int(h_interval * i):int(h_interval * (i + 1)),
+                              int(w_interval * j):int(w_interval * (j + 1))]
+            # cv2.imshow("Crop" + str(i) + str(j), temp_segment)
+            # coord_tup = (index, x1, y1, x2, y2)
+            coord_tup = (index, int(w_interval * j), int(h_interval * i),
+                         int(w_interval * (j + 1)), int(h_interval * (i + 1)))
+            segments_coords.append(coord_tup)
+            segments.append(temp_segment)
+            index += 1
 
     return segments
 
-def returnIttiSaliency(img):
-    imgsize = img.shape
-    img_width  = imgsize[1]
-    img_height = imgsize[0]
+
+def return_itti_saliency(img):
+    '''
+    Takes an image img as input and calculates the saliency map using the 
+    Itti's Saliency Map Generator. It returns the saliency map.
+    '''
+
+    img_size = img.shape
+    img_width = img_size[1]
+    img_height = img_size[0]
     sm = pySaliencyMap.pySaliencyMap(img_width, img_height)
     saliency_map = sm.SMGetSM(img)
 
-    #Scale pixel values to 0-255 instead of float (approx 0, hence black image)
-    #https://stackoverflow.com/questions/48331211/how-to-use-cv2-imshow-correctly-for-the-float-image-returned-by-cv2-distancet/48333272
-    saliency_map = cv2.normalize(saliency_map, None, 255,0, cv2.NORM_MINMAX, cv2.CV_8UC1)
+    # Scale pixel values to 0-255 instead of float (approx 0, hence black image)
+    # https://stackoverflow.com/questions/48331211/how-to-use-cv2-imshow-correctly-for-the-float-image-returned-by-cv2-distancet/48333272
+    saliency_map = cv2.normalize(
+        saliency_map, None, 255, 0, cv2.NORM_MINMAX, cv2.CV_8UC1)
 
     return saliency_map
 
-#-------------------------------------------------
-#Saliency Ranking
-#-------------------------------------------------
 
-def calculatePixelFrequency(img):
+# Saliency Ranking
+def calculate_pixel_frequency(img) -> dict:
+    '''
+    Calculates the frequency of each pixel value in the image img and 
+    returns a dictionary containing the pixel frequencies.
+    '''
+
     flt = img.flatten()
     unique, counts = np.unique(flt, return_counts=True)
-    pixelsFrequency = dict(zip(unique, counts))
+    pixels_frequency = dict(zip(unique, counts))
 
-    return pixelsFrequency
+    return pixels_frequency
 
-def calculateEntropy(img, w, dw):
+
+def calculate_entropy(img, w, dw) -> float:
+    '''
+    Calculates the entropy of an image img using the given weights w and 
+    depth weights dw. It returns the entropy value.
+    '''
+
     flt = img.flatten()
 
     c = flt.shape[0]
-    totalPixels = 0
-    tprob = 0
-    sumOfProbs = 0
+    total_pixels = 0
+    t_prob = 0
+    sum_of_probs = 0
     entropy = 0
-    wt = w*10
+    wt = w * 10
 
-    #if imgD=None then proceed normally
-    #else calculate its frequency and find max
-    #use this max value as a weight in entropy
+    # if imgD=None then proceed normally
+    # else calculate its frequency and find max
+    # use this max value as a weight in entropy
 
-    pixelsFrequency = calculatePixelFrequency(flt)
+    pixels_frequency = calculate_pixel_frequency(flt)
 
-    totalPixels = sum(pixelsFrequency.values())
+    total_pixels = sum(pixels_frequency.values())
 
-    for px in pixelsFrequency:
-        tprob = (pixelsFrequency.get(px))/totalPixels
-        #probs[px] = tprob
-        entropy += entropy + (tprob*math.log(2,(1/tprob)))
+    for px in pixels_frequency:
+        t_prob = (pixels_frequency.get(px)) / total_pixels
+        entropy += entropy + (t_prob * math.log(2, (1 / t_prob)))
 
-        entropy = entropy * wt * dw
+    entropy = entropy * wt * dw
 
-    return(entropy)
+    return entropy
 
-def findMostSalientSegment(segments, kernel, dws):
-    maxEntropy = 0
+
+def find_most_salient_segment(segments, kernel, dws):
+    '''
+    Finds the most salient segment among the provided segments using a 
+    given kernel and depth weights. It returns the maximum entropy value 
+    and the index of the most salient segment.
+    '''
+
+    max_entropy = 0
     index = 0
     i = 0
+
     for segment in segments:
-        #tempEntropy = calculateEntropy(segment, kernel[i])
-        tempEntropy = calculateEntropy(segment, kernel[i], dws[i])
-        tempTup = (i, tempEntropy)
-        segmentsEntropies.append(tempTup)
-        if tempEntropy > maxEntropy:
-            maxEntropy = tempEntropy
+        temp_entropy = calculate_entropy(segment, kernel[i], dws[i])
+        temp_tup = (i, temp_entropy)
+        segments_entropies.append(temp_tup)
+        if temp_entropy > max_entropy:
+            max_entropy = temp_entropy
             index = i
         i += 1
 
-    return maxEntropy, index
+    return max_entropy, index
 
-def makeGaussian(size, fwhm = 10, center=None):
-    #https://gist.github.com/andrewgiessel/4635563
-    """ Make a 2D gaussian kernel.
-    size is the length of a side of the square
-    fwhm is full-width-half-maximum, which
-    can be thought of as an effective radius.
-    """
+
+def make_gaussian(size, fwhm=10, center=None):
+    '''
+    Generates a 2D Gaussian kernel with the specified size and full-width-half-maximum (fwhm). It returns the Gaussian kernel.
+
+    size: length of a side of the square
+    fwhm: full-width-half-maximum, which can be thought of as an effective 
+    radius.
+
+    https://gist.github.com/andrewgiessel/4635563
+    '''
 
     x = np.arange(0, size, 1, float)
-    y = x[:,np.newaxis]
+    y = x[:, np.newaxis]
 
     if center is None:
         x0 = y0 = size // 2
@@ -148,177 +172,168 @@ def makeGaussian(size, fwhm = 10, center=None):
         x0 = center[0]
         y0 = center[1]
 
-    return np.exp(-4*np.log(2) * ((x-x0)**2 + (y-y0)**2) / fwhm**2)
+    return np.exp(-4 * np.log(2) * ((x - x0) ** 2 + (y - y0) ** 2) / fwhm ** 2)
 
-def get_last_non_zero_index(d, default=None):
+
+def get_last_non_zero_index(d, default=None) -> int:
+    '''
+    Returns the index of the last non-zero element in a list d. If no 
+    non-zero elements are found, it returns the default value.
+    '''
+
     rev = (len(d) - idx for idx, item in enumerate(reversed(d), 1) if item)
     return next(rev, default)
 
-def get_first_non_zero_indox(list):
+
+def get_first_non_zero_index(list) -> int:
+    '''
+    Returns the index of the first non-zero element in a list list. If no 
+    non-zero elements are found, it returns None.
+    '''
+
     return next((i for i, x in enumerate(list) if x), None)
 
-def genDepthWeights(dSegments, depthMap):
 
-    histD,binsD = np.histogram(depthMap,256,[0,256])
-    firstNZ = get_first_non_zero_indox(histD)
-    lastNZ = get_last_non_zero_index(histD)
-    mid = (firstNZ+lastNZ)/2
+def gen_depth_weights(d_segments, depth_map) -> list:
+    '''
+    Generates depth weights for the segments based on the depth map. It 
+    returns a list of depth weights.
+    '''
 
-    for seg in dSegments:
-        hist,bins = np.histogram(seg,256,[0,256])
-        #print(hist)
-        dw=0
+    hist_d, bins_d = np.histogram(depth_map, 256, [0, 256])
+    first_nz = get_first_non_zero_index(hist_d)
+    last_nz = get_last_non_zero_index(hist_d)
+    mid = (first_nz + last_nz) / 2
+
+    for seg in d_segments:
+        hist, bins = np.histogram(seg, 256, [0, 256])
+        dw = 0
         ind = 0
         for s in hist:
-            if(ind > mid):
-                dw = dw + (s*(1))
+            if ind > mid:
+                dw = dw + (s * 1)
             ind = ind + 1
         dws.append(dw)
 
     return dws
 
-def genBlankDepthWeight(dSegments):
-    for seg in dSegments:
-        dw=1
+
+def gen_blank_depth_weight(d_segments):
+    '''
+    Generates blank depth weights for the segments. It returns a list of 
+    depth weights.
+    '''
+
+    for seg in d_segments:
+        dw = 1
         dws.append(dw)
     return dws
 
-def generateHeatMap(img, mode, sortedSegScores, SegmentsCoords):
-    #mode0 prints just a white grid
-    #mode1 prints prints a colour-coded grid
+
+def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
+    '''
+    Generates a heatmap overlay on the input image img based on the 
+    provided sorted segment scores. The mode parameter determines the color 
+    scheme of the heatmap. It returns the image with the heatmap overlay 
+    and a list of segment scores.
+
+    mode: 0 for white grid, 1 for color-coded grid
+    '''
 
     font = cv2.FONT_HERSHEY_SIMPLEX
-    printIndex = 0
-    set = int(0.25*len(sortedSegScores))
-    color = (0,0,0)
+    print_index = 0
+    set_value = int(0.25 * len(sorted_seg_scores))
+    color = (0, 0, 0)
 
-    saraListOut = []
+    sara_list_out = []
 
-    #rank = 0
-
-    for ent in sortedSegScores:
+    for ent in sorted_seg_scores:
         quartile = 0
-        if(mode == 0):
-            color = (255,255,255)
+        if mode == 0:
+            color = (255, 255, 255)
             t = 4
-        elif(mode == 1):
-            if(printIndex+1 <= set):
-                color = (0,0,255)
+        elif mode == 1:
+            if print_index + 1 <= set_value:
+                color = (0, 0, 255)
                 t = 8
                 quartile = 4
-            elif(printIndex+1 <= set*2):
-                color = (0,128,255)
+            elif print_index + 1 <= set_value * 2:
+                color = (0, 128, 255)
                 t = 6
                 quartile = 3
-            elif(printIndex+1 <= set*3):
-                color = (0,255,255)
+            elif print_index + 1 <= set_value * 3:
+                color = (0, 255, 255)
                 t = 4
                 quartile = 2
-            elif(printIndex+1 <= set*4):
-                color = (0,250,0)
+            elif print_index + 1 <= set_value * 4:
+                color = (0, 250, 0)
                 t = 2
                 quartile = 1
 
-        x1 = segmentsCoords[ent[0]][1]
-        y1 = segmentsCoords[ent[0]][2]
-        x2 = segmentsCoords[ent[0]][3]
-        y2 = segmentsCoords[ent[0]][4]
-        x = int((x1 + x2 )/2)
-        y = int((y1 + y2)/2)
+        x1 = segments_coords[ent[0]][1]
+        y1 = segments_coords[ent[0]][2]
+        x2 = segments_coords[ent[0]][3]
+        y2 = segments_coords[ent[0]][4]
+        x = int((x1 + x2) / 2)
+        y = int((y1 + y2) / 2)
 
-        cv2.putText(img, str(printIndex), (x-2,y), font, .5, color ,1 ,cv2.LINE_AA)
-        cv2.rectangle(img, (x1,y1), (x2,y2), color , t)
+        cv2.putText(img, str(print_index), (x - 2, y),
+                    font, .5, color, 1, cv2.LINE_AA)
+        cv2.rectangle(img, (x1, y1), (x2, y2), color, t)
 
-        #print("\nText Index:" + str(printIndex))
-        #print("Rank:" + str(ent[0]))
-        #print("Quartile:" + str(quartile))
+        sara_tuple = (ent[0], print_index, quartile)
+        sara_list_out.append(sara_tuple)
+        print_index += 1
 
-        #cv2.putText(gtSara, str(printIndex), (x-2,y), font, .5, (255,255,255) ,1 ,cv2.LINE_AA)
-        #cv2.rectangle(gtSara, (x1,y1), (x2,y2), color , t)
+    return img, sara_list_out
 
-        #saraTuple = (index, rank, quartile)
-        saraTuple = (ent[0], printIndex, quartile)
-        #print("\nSara Tuple: " + str(saraTuple))
-        saraListOut.append(saraTuple)
-        printIndex+=1
 
-    #print(saraListOut)
-    return img, saraListOut
+def generate_sara(tex, tex_segments):
+    '''
+    Generates the SaRa (Salient Region Annotation) output by calculating 
+    saliency scores for the segments of the given texture image tex. It 
+    returns the texture image with the heatmap overlay and a list of 
+    segment scores.
+    '''
 
-def generateSaRa(tex, texSegments):
-    #Generate Gaussian Weights
-    gaussian_kernel_array = makeGaussian(segDim)
+    gaussian_kernel_array = make_gaussian(seg_dim)
     gaussian1d = gaussian_kernel_array.ravel()
 
-    #Generate Depth scores
-    #dSegments = generateSegments(gt, segDim)
-    dws = genBlankDepthWeight(texSegments)
+    dws = gen_blank_depth_weight(tex_segments)
 
-    #Generate Saliency Ranking
-    maxH, index = findMostSalientSegment(texSegments, gaussian1d, dws)
-    dictEntropies = dict(segmentsEntropies)
-    sortedEntropies = sorted(dictEntropies.items(), key=operator.itemgetter(1), reverse=True)
+    max_h, index = find_most_salient_segment(tex_segments, gaussian1d, dws)
+    dict_entropies = dict(segments_entropies)
+    sorted_entropies = sorted(dict_entropies.items(),
+                              key=operator.itemgetter(1), reverse=True)
 
-    #Generate Heatmap and display it
-    texOut, saraListOut = generateHeatMap(tex, 1, sortedEntropies, segmentsCoords)
-    return texOut, saraListOut
+    tex_out, sara_list_out = generate_heatmap(
+        tex, 1, sorted_entropies, segments_coords)
+    return tex_out, sara_list_out
 
-#-------------------------------------------------
-#Evaluation Functions
-#-------------------------------------------------
 
-def returnSARA(inputImg):
+def return_sara(input_img):
+    '''
+    Computes the SaRa output for the given input image. It uses the 
+    generate_sara function internally. It returns the SaRa output image and 
+    a list of segment scores.
+    '''
 
-    texSegments = generateSegments(returnIttiSaliency(inputImg), 9)
-    saraOutput, saraListOutput = generateSaRa(inputImg, texSegments)
+    tex_segments = generate_segments(return_itti_saliency(input_img), 9)
+    sara_output, sara_list_output = generate_sara(input_img, tex_segments)
 
-    return saraOutput, saraListOutput
+    return sara_output, sara_list_output
 
-def mse(imageA, imageB):
-	# the 'Mean Squared Error' between the two images is the
-	# sum of the squared difference between the two images;
-	# NOTE: the two images must have the same dimension
-	err = np.sum((imageA.astype("float") - imageB.astype("float")) ** 2)
-	err /= float(imageA.shape[0] * imageA.shape[1])
 
-	# return the MSE, the lower the error, the more "similar"
-	# the two images are
-	return err
+def mean_squared_error(image_a, image_b) -> float:
+    '''
+    Calculates the Mean Squared Error (MSE), i.e. sum of squared 
+    differences between two images image_a and image_b. It returns the MSE 
+    value.
 
-#-------------------------------------------------
-#-------------------------------------------------
-#Start Main Code
-#-------------------------------------------------
-#-------------------------------------------------
+    NOTE: The two images must have the same dimension
+    '''
 
-cotsSet = "academic_book_no"
-imgPath1 = "/Users/dylanseychell/dev/COTS/COTSDataset/Part2-MultipleObjects/" + cotsSet +"/3_colour.jpeg"
+    err = np.sum((image_a.astype("float") - image_b.astype("float")) ** 2)
+    err /= float(image_a.shape[0] * image_a.shape[1])
 
-s1 = cv2.imread(imgPath1)
-
-#for another image, simply import a second image and initialise s2 and replicate the code below for the scond image
-#s2 = cv2.imread(imgPath2)
-
-cv2.imshow("Input Image", s1)
-print(texPath1)
-
-#texSegments1 = generateSegments(returnIttiSaliency(s1), 9)
-
-print("Generating SaRa")
-
-outS1, saraListS1 = returnSARA(s1)
-cv2.imshow("SaRa Output for S1", outS1)
-print(saraListS1)
-
-cv2.waitKey()
-
-#-------------------------------------------------
-#Auxiliary Output Code
-#-------------------------------------------------
-
-#start_time = time.time()
-#Code to be timed goes here
-#print("%s" % (time.time() - start_time))
-
-#returns zero if all pixels are black
-#print(cv2.countNonZero(gtSegments[0]))
+    return err
