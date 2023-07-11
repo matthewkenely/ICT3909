@@ -175,23 +175,23 @@ def make_gaussian(size, fwhm=10, center=None):
     return np.exp(-4 * np.log(2) * ((x - x0) ** 2 + (y - y0) ** 2) / fwhm ** 2)
 
 
-def get_last_non_zero_index(d, default=None) -> int:
-    '''
-    Returns the index of the last non-zero element in a list d. If no 
-    non-zero elements are found, it returns the default value.
-    '''
+# def get_last_non_zero_index(d, default=None) -> int:
+#     '''
+#     Returns the index of the last non-zero element in a list d. If no 
+#     non-zero elements are found, it returns the default value.
+#     '''
 
-    rev = (len(d) - idx for idx, item in enumerate(reversed(d), 1) if item)
-    return next(rev, default)
+#     rev = (len(d) - idx for idx, item in enumerate(reversed(d), 1) if item)
+#     return next(rev, default)
 
 
-def get_first_non_zero_index(list) -> int:
-    '''
-    Returns the index of the first non-zero element in a list list. If no 
-    non-zero elements are found, it returns None.
-    '''
+# def get_first_non_zero_index(list) -> int:
+#     '''
+#     Returns the index of the first non-zero element in a list list. If no 
+#     non-zero elements are found, it returns None.
+#     '''
 
-    return next((i for i, x in enumerate(list) if x), None)
+#     return next((i for i, x in enumerate(list) if x), None)
 
 
 def gen_depth_weights(d_segments, depth_map) -> list:
@@ -201,12 +201,18 @@ def gen_depth_weights(d_segments, depth_map) -> list:
     '''
 
     hist_d, bins_d = np.histogram(depth_map, 256, [0, 256])
-    first_nz = get_first_non_zero_index(hist_d)
-    last_nz = get_last_non_zero_index(hist_d)
+
+    # Get first non-zero index
+    first_nz = next((i for i, x in enumerate(hist_d) if x), None)
+
+    # Get last non-zero index
+    rev = (len(hist_d) - idx for idx, item in enumerate(reversed(hist_d), 1) if item)
+    last_nz = next(rev, default=None)
+
     mid = (first_nz + last_nz) / 2
 
     for seg in d_segments:
-        hist, bins = np.histogram(seg, 256, [0, 256])
+        hist, _ = np.histogram(seg, 256, [0, 256])
         dw = 0
         ind = 0
         for s in hist:
@@ -224,7 +230,7 @@ def gen_blank_depth_weight(d_segments):
     depth weights.
     '''
 
-    for seg in d_segments:
+    for _ in d_segments:
         dw = 1
         dws.append(dw)
     return dws
