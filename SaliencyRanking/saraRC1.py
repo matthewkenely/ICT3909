@@ -49,15 +49,14 @@ def generate_segments(img, seg_count) -> list:
 
     for i in range(segment_count):
         for j in range(segment_count):
-            # Note: img[TopRow:BottomRow, FirstColumn:LastColumn]
             temp_segment = img[int(h_interval * i):int(h_interval * (i + 1)),
                               int(w_interval * j):int(w_interval * (j + 1))]
-            # cv2.imshow("Crop" + str(i) + str(j), temp_segment)
-            # coord_tup = (index, x1, y1, x2, y2)
+            segments.append(temp_segment)
+            
             coord_tup = (index, int(w_interval * j), int(h_interval * i),
                          int(w_interval * (j + 1)), int(h_interval * (i + 1)))
             segments_coords.append(coord_tup)
-            segments.append(temp_segment)
+            
             index += 1
 
     return segments
@@ -69,16 +68,14 @@ def return_itti_saliency(img):
     Itti's Saliency Map Generator. It returns the saliency map.
     '''
 
-    img_size = img.shape
-    img_width = img_size[1]
-    img_height = img_size[0]
+    img_width, img_height = img.shape[1], img.shape[0]
+
     sm = pySaliencyMap.pySaliencyMap(img_width, img_height)
     saliency_map = sm.SMGetSM(img)
 
     # Scale pixel values to 0-255 instead of float (approx 0, hence black image)
     # https://stackoverflow.com/questions/48331211/how-to-use-cv2-imshow-correctly-for-the-float-image-returned-by-cv2-distancet/48333272
-    saliency_map = cv2.normalize(
-        saliency_map, None, 255, 0, cv2.NORM_MINMAX, cv2.CV_8UC1)
+    saliency_map = cv2.normalize(saliency_map, None, 255, 0, cv2.NORM_MINMAX, cv2.CV_8UC1)
 
     return saliency_map
 
@@ -105,10 +102,10 @@ def calculate_entropy(img, w, dw) -> float:
 
     flt = img.flatten()
 
-    c = flt.shape[0]
+    # c = flt.shape[0]
     total_pixels = 0
     t_prob = 0
-    sum_of_probs = 0
+    # sum_of_probs = 0
     entropy = 0
     wt = w * 10
 
@@ -172,26 +169,8 @@ def make_gaussian(size, fwhm=10, center=None):
         x0 = center[0]
         y0 = center[1]
 
+    
     return np.exp(-4 * np.log(2) * ((x - x0) ** 2 + (y - y0) ** 2) / fwhm ** 2)
-
-
-# def get_last_non_zero_index(d, default=None) -> int:
-#     '''
-#     Returns the index of the last non-zero element in a list d. If no 
-#     non-zero elements are found, it returns the default value.
-#     '''
-
-#     rev = (len(d) - idx for idx, item in enumerate(reversed(d), 1) if item)
-#     return next(rev, default)
-
-
-# def get_first_non_zero_index(list) -> int:
-#     '''
-#     Returns the index of the first non-zero element in a list list. If no 
-#     non-zero elements are found, it returns None.
-#     '''
-
-#     return next((i for i, x in enumerate(list) if x), None)
 
 
 def gen_depth_weights(d_segments, depth_map) -> list:
@@ -200,7 +179,7 @@ def gen_depth_weights(d_segments, depth_map) -> list:
     returns a list of depth weights.
     '''
 
-    hist_d, bins_d = np.histogram(depth_map, 256, [0, 256])
+    hist_d, _ = np.histogram(depth_map, 256, [0, 256])
 
     # Get first non-zero index
     first_nz = next((i for i, x in enumerate(hist_d) if x), None)
@@ -339,7 +318,7 @@ def mean_squared_error(image_a, image_b) -> float:
     NOTE: The two images must have the same dimension
     '''
 
-    err = np.sum((image_a.astype("float") - image_b.astype("float")) ** 2)
+    err = np.sum((image_a.astype('float') - image_b.astype('float')) ** 2)
     err /= float(image_a.shape[0] * image_a.shape[1])
 
     return err
