@@ -1,5 +1,5 @@
-# ICT3909
-Optimisation of Saliency-driven Image Content Ranking Parameters | B.Sc. IT (Hons) Artificial Intelligence FYP
+# ICT3909 - Optimisation of Saliency-driven Image Content Ranking Parameters
+B.Sc. IT (Hons) Artificial Intelligence FYP
 
 In 2018, Seychell <i>et al.</i> developed <a href="	https://www.um.edu.mt/library/oar/handle/123456789/90087" target="_blank">SaRa</a>, an approach which allows for the automatic
 ranking of the saliency of objects within images without the prior need of a trained model.
