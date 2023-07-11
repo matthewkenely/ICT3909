@@ -17,7 +17,7 @@ import pySaliencyMap
 segments_entropies = []
 segments_coords = []
 
-seg_dim = 9
+seg_dim = 0
 segments = []
 gt_segments = []
 dws = []
@@ -264,9 +264,10 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
 
         cv2.putText(img, str(print_index), (x - 2, y),
                     font, .5, color, 1, cv2.LINE_AA)
-        cv2.rectangle(img, (x1, y1), (x2, y2), color, t)
+        cv2.rectangle(img, (x1, y1), (x2, y2), color, 2)
 
-        sara_tuple = (ent[0], print_index, quartile)
+        # Rank, entropy, index, quartile
+        sara_tuple = (ent[0], ent[1], print_index, quartile)
         sara_list_out.append(sara_tuple)
         print_index += 1
 
@@ -296,14 +297,17 @@ def generate_sara(tex, tex_segments):
     return tex_out, sara_list_out
 
 
-def return_sara(input_img):
+def return_sara(input_img, grid):
     '''
     Computes the SaRa output for the given input image. It uses the 
     generate_sara function internally. It returns the SaRa output image and 
     a list of segment scores.
     '''
 
-    tex_segments = generate_segments(return_itti_saliency(input_img), 9)
+    global seg_dim
+    seg_dim = grid
+
+    tex_segments = generate_segments(return_itti_saliency(input_img), seg_dim)
     sara_output, sara_list_output = generate_sara(input_img, tex_segments)
 
     return sara_output, sara_list_output
@@ -322,3 +326,21 @@ def mean_squared_error(image_a, image_b) -> float:
     err /= float(image_a.shape[0] * image_a.shape[1])
 
     return err
+
+
+def reset():
+    '''
+    Resets all global variables to their default values.
+    '''
+
+    global segments_entropies, segments_coords, seg_dim, segments, gt_segments, dws, sara_list
+
+    segments_entropies = []
+    segments_coords = []
+
+    seg_dim = 0
+    segments = []
+    gt_segments = []
+    dws = []
+    sara_list = []
+
