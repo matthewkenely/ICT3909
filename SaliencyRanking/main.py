@@ -14,12 +14,12 @@ def maximise_entropy(im, name, n=25):
     plt.figure(name + ' SaRa Output - All Grid Sizes')
     plt.gcf().set_size_inches(12, 6)
 
-    for i in range(5, 15):
+    for i in range(5, 25):
         heatmap, sara_list = sara.return_sara(s1.copy(), i)
         heatmap = cv2.cvtColor(heatmap, cv2.COLOR_BGR2RGB)
 
         # Plot heatmap of grid size i x i
-        plt.subplot(2, 5, i - 4)
+        plt.subplot(4, 5, i - 4)
         plt.imshow(heatmap)
         plt.xticks([])
         plt.yticks([])
@@ -33,7 +33,7 @@ def maximise_entropy(im, name, n=25):
         # Average entropy of the top 25% grid segments
         top = i * i // 4
 
-        average = sum(sara_list[0:top][1]) / len(sara_list[0:n][1])
+        average = sum(sara_list[0:top][1]) / len(sara_list[0:top][1])
         entropies.append((i, average, path))
 
         print(f'Image saved to {path}')
@@ -48,8 +48,10 @@ def maximise_entropy(im, name, n=25):
 def main():
     n = 25
 
-    path = '../COTS Dataset/Part 1 - Single Objects/objects/'
-    name = 'cmt_mug_colour.jpeg'
+    # path = '../COTS Dataset/Part 1 - Single Objects/objects/'
+    path = '../Flowers/'
+    # name = 'cmt_mug_colour.jpeg'
+    name = 'cropped.jpg'
     im = path + name
 
     entropies, ranks = maximise_entropy(im, name, n)
