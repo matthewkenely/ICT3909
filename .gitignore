@@ -1,2 +1,4 @@
+*.h5
+
 maskr-coco-ranking/Mask_RCNN/*.json
 maskr-coco-ranking/Mask_RCNN/*.h5
