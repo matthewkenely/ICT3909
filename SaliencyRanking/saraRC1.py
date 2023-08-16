@@ -96,6 +96,7 @@ def calculate_pixel_frequency(img) -> dict:
 
     return pixels_frequency
 
+
 def calculate_score(H, ds, cb, w):
     '''
     Calculates the saliency score of an image img using the entropy H, depth score ds, centre-bias cb and weights w. It returns the saliency score.
@@ -104,7 +105,14 @@ def calculate_score(H, ds, cb, w):
     # Normalise H
     # H = (H - 0) / (math.log(2, 256) - 0)
 
-    return (H * w[0]) + (ds * w[1]) + (cb * w[2])
+    # H = wth root of H
+    H = H ** (1 / w[0])
+
+    ds = ds ** w[1]
+
+    cb = cb ** w[2]
+
+    return H + ds + cb
 
 
 def calculate_entropy(img, w, dw) -> float:
@@ -260,6 +268,12 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
     set_value = int(0.25 * len(sorted_seg_scores))
     color = (0, 0, 0)
 
+    max_x = 0
+    max_y = 0
+
+    overlay = np.zeros_like(img, dtype=np.uint8)
+    text_overlay = np.zeros_like(img, dtype=np.uint8)
+
     sara_list_out = []
 
     for ent in reversed(sorted_seg_scores):
@@ -278,6 +292,7 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
                 quartile = 2
             elif print_index + 1 <= set_value * 3:
                 color = (0, 255, 255, 128)
+                t = 4
                 t = 6
                 quartile = 3
             elif print_index + 1 <= set_value * 4:
@@ -289,16 +304,28 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
         y1 = segments_coords[ent[0]][2]
         x2 = segments_coords[ent[0]][3]
         y2 = segments_coords[ent[0]][4]
+
+        if x2 > max_x:
+            max_x = x2
+        if y2 > max_y:
+            max_y = y2
+
         x = int((x1 + x2) / 2)
         y = int((y1 + y2) / 2)
 
-        # transparent text
-        overlay = img.copy()
-        cv2.putText(img, str(print_index), (x - 2, y),
-                    font, .4, (color[0], color[1], color[2]), 1, cv2.LINE_AA)
-        cv2.rectangle(overlay, (x1, y1), (x2, y2), color, 2)
 
-        cv2.addWeighted(overlay, 0.4, img, 0.6, 0, img)
+
+        # fill rectangle
+        cv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)
+
+        cv2.rectangle(overlay, (x1, y1), (x2, y2), (0, 0, 0), 1)
+        # put text in the middle of the rectangle
+        
+        # white text
+        cv2.putText(text_overlay, str(print_index), (x - 5, y),
+                    font, .4, (255, 255, 255), 1, cv2.LINE_AA)
+        
+
 
         # Rank, score, entropy, centre-bias, depth, index, quartile
         # print(ent)
@@ -306,6 +333,17 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
         sara_list_out.append(sara_tuple)
         print_index -= 1
 
+    # crop the overlay to up to x2 and y2
+    overlay = overlay[0:max_y, 0:max_x]
+    img = img[0:max_y, 0:max_x]
+
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
+    
+    img = cv2.addWeighted(overlay, 0.3, img, 0.7, 0, img)
+    img = cv2.addWeighted(text_overlay, 0.5, img, 0.5, 0, img)
+
+    
     return img, sara_list_out
 
 
