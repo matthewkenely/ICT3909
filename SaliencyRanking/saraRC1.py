@@ -101,8 +101,8 @@ def calculate_score(H, ds, cb, w):
     Calculates the saliency score of an image img using the entropy H, depth score ds, centre-bias cb and weights w. It returns the saliency score.
     '''
 
-    # Normalise H between 0 and 1
-    H = (H - 0) / (math.log(2, 256) - 0)
+    # Normalise H
+    # H = (H - 0) / (math.log(2, 256) - 0)
 
     return (H * w[0]) + (ds * w[1]) + (cb * w[2])
 
@@ -296,7 +296,7 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
         cv2.rectangle(img, (x1, y1), (x2, y2), color, 2)
 
         # Rank, score, entropy, centre-bias, depth, index, quartile
-        print(ent)
+        # print(ent)
         sara_tuple = (ent[0], ent[1], ent[2], ent[3], ent[4], print_index, quartile)
         sara_list_out.append(sara_tuple)
         print_index += 1
