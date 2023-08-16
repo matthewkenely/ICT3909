@@ -14,7 +14,10 @@ import pySaliencyMap
 
 
 # Global Variables
-segments_entropies = []
+WEIGHTS = (1, 1, 1)
+
+# segments_entropies = []
+segments_scores = []
 segments_coords = []
 
 seg_dim = 0
@@ -93,6 +96,16 @@ def calculate_pixel_frequency(img) -> dict:
 
     return pixels_frequency
 
+def calculate_score(H, ds, cb, w):
+    '''
+    Calculates the saliency score of an image img using the entropy H, depth score ds, centre-bias cb and weights w. It returns the saliency score.
+    '''
+
+    # Normalise H between 0 and 1
+    H = (H - 0) / (math.log(2, 256) - 0)
+
+    return (H * w[0]) + (ds * w[1]) + (cb * w[2])
+
 
 def calculate_entropy(img, w, dw) -> float:
     '''
@@ -121,7 +134,7 @@ def calculate_entropy(img, w, dw) -> float:
         t_prob = (pixels_frequency.get(px)) / total_pixels
         entropy += entropy + (t_prob * math.log(2, (1 / t_prob)))
 
-    entropy = entropy * wt * dw
+    # entropy = entropy * wt * dw
 
     return entropy
 
@@ -133,20 +146,36 @@ def find_most_salient_segment(segments, kernel, dws):
     and the index of the most salient segment.
     '''
 
-    max_entropy = 0
+    # max_entropy = 0
+    max_score = 0
     index = 0
     i = 0
 
     for segment in segments:
         temp_entropy = calculate_entropy(segment, kernel[i], dws[i])
-        temp_tup = (i, temp_entropy)
-        segments_entropies.append(temp_tup)
-        if temp_entropy > max_entropy:
-            max_entropy = temp_entropy
+        # temp_tup = (i, temp_entropy)
+        # segments_entropies.append(temp_tup)
+
+        w = WEIGHTS
+        temp_score = calculate_score(temp_entropy, dws[i], kernel[i], w)
+
+        temp_tup = (i, temp_score, temp_entropy, kernel[i], dws[i])
+
+        # segments_scores.append((i, temp_score))
+        segments_scores.append(temp_tup)
+
+        # if temp_entropy > max_entropy:
+        #     max_entropy = temp_entropy
+        #     index = i
+
+        if temp_score > max_score:
+            max_score = temp_score
             index = i
+
         i += 1
 
-    return max_entropy, index
+    # return max_entropy, index
+    return max_score, index
 
 
 def make_gaussian(size, fwhm=10, center=None):
@@ -266,8 +295,9 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
                     font, .5, color, 1, cv2.LINE_AA)
         cv2.rectangle(img, (x1, y1), (x2, y2), color, 2)
 
-        # Rank, entropy, index, quartile
-        sara_tuple = (ent[0], ent[1], print_index, quartile)
+        # Rank, score, entropy, centre-bias, depth, index, quartile
+        print(ent)
+        sara_tuple = (ent[0], ent[1], ent[2], ent[3], ent[4], print_index, quartile)
         sara_list_out.append(sara_tuple)
         print_index += 1
 
@@ -288,12 +318,32 @@ def generate_sara(tex, tex_segments):
     dws = gen_blank_depth_weight(tex_segments)
 
     max_h, index = find_most_salient_segment(tex_segments, gaussian1d, dws)
-    dict_entropies = dict(segments_entropies)
-    sorted_entropies = sorted(dict_entropies.items(),
-                              key=operator.itemgetter(1), reverse=True)
+    # dict_entropies = dict(segments_entropies)
+    # segments_scores list with 5 elements, use index as key for dict and store rest as list of index
+    dict_scores = {}
+
+    for segment in segments_scores:
+        dict_scores[segment[0]] = [segment[1], segment[2], segment[3], segment[4]]
+
+    # sorted_entropies = sorted(dict_entropies.items(),
+    #                           key=operator.itemgetter(1), reverse=True)
+                              
+
+    # sorted_scores = sorted(dict_scores.items(),
+    #                           key=operator.itemgetter(1), reverse=True)
+
+    # Sort by first value in value list
+    sorted_scores = sorted(dict_scores.items(), key=lambda x: x[1][0], reverse=True)
+    
+    # flatten
+    sorted_scores = [[i[0], i[1][0], i[1][1], i[1][2], i[1][3]] for i in sorted_scores]
+
+    # tex_out, sara_list_out = generate_heatmap(
+    #     tex, 1, sorted_entropies, segments_coords)
 
     tex_out, sara_list_out = generate_heatmap(
-        tex, 1, sorted_entropies, segments_coords)
+        tex, 1, sorted_scores, segments_coords)
+    
     return tex_out, sara_list_out
 
 
@@ -333,9 +383,12 @@ def reset():
     Resets all global variables to their default values.
     '''
 
-    global segments_entropies, segments_coords, seg_dim, segments, gt_segments, dws, sara_list
+    # global segments_entropies, segments_scores, segments_coords, seg_dim, segments, gt_segments, dws, sara_list
 
-    segments_entropies = []
+    global segments_scores, segments_coords, seg_dim, segments, gt_segments, dws, sara_list
+
+    # segments_entropies = []
+    segments_scores = []
     segments_coords = []
 
     seg_dim = 0
