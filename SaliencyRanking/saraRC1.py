@@ -255,34 +255,35 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
     '''
 
     font = cv2.FONT_HERSHEY_SIMPLEX
-    print_index = 0
+    # print_index = 0
+    print_index = len(sorted_seg_scores) - 1
     set_value = int(0.25 * len(sorted_seg_scores))
     color = (0, 0, 0)
 
     sara_list_out = []
 
-    for ent in sorted_seg_scores:
+    for ent in reversed(sorted_seg_scores):
         quartile = 0
         if mode == 0:
-            color = (255, 255, 255)
+            color = (255, 255, 255, 128)
             t = 4
         elif mode == 1:
             if print_index + 1 <= set_value:
-                color = (0, 0, 255)
-                t = 8
-                quartile = 4
-            elif print_index + 1 <= set_value * 2:
-                color = (0, 128, 255)
-                t = 6
-                quartile = 3
-            elif print_index + 1 <= set_value * 3:
-                color = (0, 255, 255)
-                t = 4
-                quartile = 2
-            elif print_index + 1 <= set_value * 4:
-                color = (0, 250, 0)
+                color = (0, 0, 255, 128)
                 t = 2
                 quartile = 1
+            elif print_index + 1 <= set_value * 2:
+                color = (0, 128, 255, 128)
+                t = 4
+                quartile = 2
+            elif print_index + 1 <= set_value * 3:
+                color = (0, 255, 255, 128)
+                t = 6
+                quartile = 3
+            elif print_index + 1 <= set_value * 4:
+                color = (0, 250, 0, 128)
+                t = 8
+                quartile = 4
 
         x1 = segments_coords[ent[0]][1]
         y1 = segments_coords[ent[0]][2]
@@ -291,15 +292,19 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
         x = int((x1 + x2) / 2)
         y = int((y1 + y2) / 2)
 
+        # transparent text
+        overlay = img.copy()
         cv2.putText(img, str(print_index), (x - 2, y),
-                    font, .5, color, 1, cv2.LINE_AA)
+                    font, .3, color, 1, cv2.LINE_AA)
         cv2.rectangle(img, (x1, y1), (x2, y2), color, 2)
+
+        cv2.addWeighted(overlay, 0.3, img, 0.7, 0, img)
 
         # Rank, score, entropy, centre-bias, depth, index, quartile
         # print(ent)
         sara_tuple = (ent[0], ent[1], ent[2], ent[3], ent[4], print_index, quartile)
         sara_list_out.append(sara_tuple)
-        print_index += 1
+        print_index -= 1
 
     return img, sara_list_out
 
