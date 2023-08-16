@@ -265,23 +265,23 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
     for ent in reversed(sorted_seg_scores):
         quartile = 0
         if mode == 0:
-            color = (255, 255, 255, 128)
+            color = (255, 255, 255)
             t = 4
         elif mode == 1:
             if print_index + 1 <= set_value:
-                color = (0, 0, 255, 128)
+                color = (0, 0, 255)
                 t = 2
                 quartile = 1
             elif print_index + 1 <= set_value * 2:
-                color = (0, 128, 255, 128)
+                color = (0, 128, 255)
                 t = 4
                 quartile = 2
             elif print_index + 1 <= set_value * 3:
-                color = (0, 255, 255, 128)
+                color = (0, 255, 255)
                 t = 6
                 quartile = 3
             elif print_index + 1 <= set_value * 4:
-                color = (0, 250, 0, 128)
+                color = (0, 250, 0)
                 t = 8
                 quartile = 4
 
@@ -295,8 +295,8 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
         # transparent text
         overlay = img.copy()
         cv2.putText(img, str(print_index), (x - 2, y),
-                    font, .3, color, 1, cv2.LINE_AA)
-        cv2.rectangle(img, (x1, y1), (x2, y2), color, 2)
+                    font, .3, (color[0], color[1], color[2]), 1, cv2.LINE_AA)
+        cv2.rectangle(overlay, (x1, y1), (x2, y2), color, 2)
 
         cv2.addWeighted(overlay, 0.3, img, 0.7, 0, img)
 
