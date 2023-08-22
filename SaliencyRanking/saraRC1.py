@@ -335,13 +335,13 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
 
     # crop the overlay to up to x2 and y2
     overlay = overlay[0:max_y, 0:max_x]
+    text_overlay = text_overlay[0:max_y, 0:max_x]
     img = img[0:max_y, 0:max_x]
 
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
     
     img = cv2.addWeighted(overlay, 0.3, img, 0.7, 0, img)
-    img = cv2.addWeighted(text_overlay, 0.5, img, 0.5, 0, img)
+
+    img[text_overlay > 128] = text_overlay[text_overlay > 128]
 
     
     return img, sara_list_out
