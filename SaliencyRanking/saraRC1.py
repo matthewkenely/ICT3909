@@ -14,6 +14,7 @@ import pySaliencyMap
 
 
 # Global Variables
+# Entropy, depth score, centre bias
 WEIGHTS = (1, 1, 1)
 
 # segments_entropies = []
@@ -65,7 +66,7 @@ def generate_segments(img, seg_count) -> list:
     return segments
 
 
-def return_itti_saliency(img):
+def return_saliency(img, generator='itti', deepgaze_model=None, emlnet_models=None, DEVICE='cpu'):
     '''
     Takes an image img as input and calculates the saliency map using the 
     Itti's Saliency Map Generator. It returns the saliency map.
@@ -73,14 +74,110 @@ def return_itti_saliency(img):
 
     img_width, img_height = img.shape[1], img.shape[0]
 
-    sm = pySaliencyMap.pySaliencyMap(img_width, img_height)
-    saliency_map = sm.SMGetSM(img)
+    if generator == 'itti':
+        sm = pySaliencyMap.pySaliencyMap(img_width, img_height)
+        saliency_map = sm.SMGetSM(img)
 
-    # Scale pixel values to 0-255 instead of float (approx 0, hence black image)
-    # https://stackoverflow.com/questions/48331211/how-to-use-cv2-imshow-correctly-for-the-float-image-returned-by-cv2-distancet/48333272
+        # Scale pixel values to 0-255 instead of float (approx 0, hence black image)
+        # https://stackoverflow.com/questions/48331211/how-to-use-cv2-imshow-correctly-for-the-float-image-returned-by-cv2-distancet/48333272
+        saliency_map = cv2.normalize(saliency_map, None, 255, 0, cv2.NORM_MINMAX, cv2.CV_8UC1)
+    elif generator == 'deepgaze':
+        import numpy as np
+        from scipy.misc import face
+        from scipy.ndimage import zoom
+        from scipy.special import logsumexp
+        import torch
+
+        import deepgaze_pytorch
+
+        # you can use DeepGazeI or DeepGazeIIE
+        # model = deepgaze_pytorch.DeepGazeIIE(pretrained=True).to(DEVICE)
+
+        if deepgaze_model is None:
+            model = deepgaze_pytorch.DeepGazeIIE(pretrained=True).to(DEVICE)
+        else:
+            model = deepgaze_model
+
+        # image = face()
+        image = img
+
+        # load precomputed centerbias log density (from MIT1003) over a 1024x1024 image
+        # you can download the centerbias from https://github.com/matthias-k/DeepGaze/releases/download/v1.0.0/centerbias_mit1003.npy
+        # alternatively, you can use a uniform centerbias via `centerbias_template = np.zeros((1024, 1024))`.
+        # centerbias_template = np.load('centerbias_mit1003.npy')
+        centerbias_template = np.zeros((1024, 1024))
+        # rescale to match image size
+        centerbias = zoom(centerbias_template, (image.shape[0]/centerbias_template.shape[0], image.shape[1]/centerbias_template.shape[1]), order=0, mode='nearest')
+        # renormalize log density
+        centerbias -= logsumexp(centerbias)
+
+        image_tensor = torch.tensor([image.transpose(2, 0, 1)]).to(DEVICE)
+        centerbias_tensor = torch.tensor([centerbias]).to(DEVICE)
+
+        log_density_prediction = model(image_tensor, centerbias_tensor)
+
+        saliency_map = cv2.resize(log_density_prediction.detach().cpu().numpy()[0, 0], (img_width, img_height))
+
+    elif generator == 'fpn':
+        # Add ./fpn to the system path
+        import sys
+        sys.path.append('./fpn')
+        import inference as inf
+
+        results_dict = {}
+        rt_args = inf.parse_arguments(img)
+        
+        # Call the run_inference function and capture the results
+        pred_masks_raw_list, pred_masks_round_list = inf.run_inference(rt_args)
+        
+        # Store the results in the dictionary
+        results_dict['pred_masks_raw'] = pred_masks_raw_list
+        results_dict['pred_masks_round'] = pred_masks_round_list
+
+        saliency_map = results_dict['pred_masks_raw']
+
+        if img_width > img_height:
+            saliency_map = cv2.resize(saliency_map, (img_width, img_width))
+
+            diff = (img_width - img_height) // 2
+
+            saliency_map = saliency_map[diff:img_width - diff, 0:img_width]
+        else:
+            saliency_map = cv2.resize(saliency_map, (img_height, img_height))
+
+            diff = (img_height - img_width) // 2
+
+            saliency_map = saliency_map[0:img_height, diff:img_height - diff]
+
+    elif generator == 'emlnet':
+        from emlnet.eval_combined import main as eval_combined
+        saliency_map = eval_combined(img, emlnet_models)
+
+        # Resize to image size
+        saliency_map = cv2.resize(saliency_map, (img_width, img_height))
+
+    # Normalize saliency map
     saliency_map = cv2.normalize(saliency_map, None, 255, 0, cv2.NORM_MINMAX, cv2.CV_8UC1)
 
     return saliency_map
+
+
+# def return_itti_saliency(img):
+#     '''
+#     Takes an image img as input and calculates the saliency map using the 
+#     Itti's Saliency Map Generator. It returns the saliency map.
+#     '''
+
+#     img_width, img_height = img.shape[1], img.shape[0]
+
+#     sm = pySaliencyMap.pySaliencyMap(img_width, img_height)
+#     saliency_map = sm.SMGetSM(img)
+
+#     # Scale pixel values to 0-255 instead of float (approx 0, hence black image)
+#     # https://stackoverflow.com/questions/48331211/how-to-use-cv2-imshow-correctly-for-the-float-image-returned-by-cv2-distancet/48333272
+#     saliency_map = cv2.normalize(saliency_map, None, 255, 0, cv2.NORM_MINMAX, cv2.CV_8UC1)
+
+#     return saliency_map
 
 
 # Saliency Ranking
@@ -139,8 +236,8 @@ def calculate_entropy(img, w, dw) -> float:
     total_pixels = sum(pixels_frequency.values())
 
     for px in pixels_frequency:
-        t_prob = (pixels_frequency.get(px)) / total_pixels
-        entropy += entropy + (t_prob * math.log(2, (1 / t_prob)))
+        t_prob = pixels_frequency[px] / total_pixels
+        entropy += entropy + (t_prob * math.log((1 / t_prob), 2))
 
     # entropy = entropy * wt * dw
 
@@ -328,7 +425,6 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
 
 
         # Rank, score, entropy, centre-bias, depth, index, quartile
-        # print(ent)
         sara_tuple = (ent[0], ent[1], ent[2], ent[3], ent[4], print_index, quartile)
         sara_list_out.append(sara_tuple)
         print_index -= 1
@@ -390,7 +486,7 @@ def generate_sara(tex, tex_segments):
     return tex_out, sara_list_out
 
 
-def return_sara(input_img, grid):
+def return_sara(input_img, grid, generator='itti', saliency_map=None, DEVICE='cpu'):
     '''
     Computes the SaRa output for the given input image. It uses the 
     generate_sara function internally. It returns the SaRa output image and 
@@ -400,7 +496,12 @@ def return_sara(input_img, grid):
     global seg_dim
     seg_dim = grid
 
-    tex_segments = generate_segments(return_itti_saliency(input_img), seg_dim)
+    if saliency_map is None:
+        tex_segments = generate_segments(return_saliency(input_img, generator, DEVICE=DEVICE), seg_dim)
+    else:
+        tex_segments = generate_segments(saliency_map, seg_dim)
+
+    # tex_segments = generate_segments(input_img, seg_dim)
     sara_output, sara_list_output = generate_sara(input_img, tex_segments)
 
     return sara_output, sara_list_output
