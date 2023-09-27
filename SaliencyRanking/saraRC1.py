@@ -237,7 +237,7 @@ def calculate_entropy(img, w, dw) -> float:
 
     for px in pixels_frequency:
         t_prob = pixels_frequency[px] / total_pixels
-        entropy += entropy + (t_prob * math.log((1 / t_prob), 2))
+        entropy += entropy + (t_prob * math.log((1 / t_prob), 2))  + 0.00000001
 
     # entropy = entropy * wt * dw
 
