@@ -10,8 +10,8 @@ attempts to tackle the creation of such a model. When an object within an image 
 salient by a model, it means that the model approximates that object to garner
 prioritisation from the human visual system.
 
-This concept of visual prioritisation implies that objects in an image can be organ‐
-ised into ranks, from smallest (most salient) to largest (least salient). In 2018, Seychell
+This concept of visual prioritisation implies that objects in an image can be organised into ranks, 
+from smallest (most salient) to largest (least salient). In 2018, Seychell
 <i>et al.</i> developed <a href="	https://www.um.edu.mt/library/oar/handle/123456789/90087" target="_blank"><b>SaRa</b></a>,
 an approach which allows for the automatic ranking of the
 saliency of objects within images without the prior need of a trained model. This approach
