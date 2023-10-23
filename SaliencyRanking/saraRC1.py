@@ -14,7 +14,6 @@ import pySaliencyMap
 
 
 # Global Variables
-# Entropy, depth score, centre bias
 WEIGHTS = (1, 1, 1)
 
 # segments_entropies = []
@@ -75,6 +74,7 @@ def return_saliency(img, generator='itti', deepgaze_model=None, emlnet_models=No
     img_width, img_height = img.shape[1], img.shape[0]
 
     if generator == 'itti':
+
         sm = pySaliencyMap.pySaliencyMap(img_width, img_height)
         saliency_map = sm.SMGetSM(img)
 
@@ -237,7 +237,7 @@ def calculate_entropy(img, w, dw) -> float:
 
     for px in pixels_frequency:
         t_prob = pixels_frequency[px] / total_pixels
-        entropy += entropy + (t_prob * math.log((1 / t_prob), 2))  + 0.00000001
+        entropy += entropy + (t_prob * math.log((1 / t_prob), 2))
 
     # entropy = entropy * wt * dw
 
@@ -392,10 +392,15 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
                 t = 4
                 t = 6
                 quartile = 3
-            elif print_index + 1 <= set_value * 4:
+            # elif print_index + 1 <= set_value * 4:
+            #     color = (0, 250, 0, 64)
+            #     t = 8
+            #     quartile = 4
+            else:
                 color = (0, 250, 0, 64)
                 t = 8
                 quartile = 4
+
 
         x1 = segments_coords[ent[0]][1]
         y1 = segments_coords[ent[0]][2]
@@ -486,7 +491,7 @@ def generate_sara(tex, tex_segments):
     return tex_out, sara_list_out
 
 
-def return_sara(input_img, grid, generator='itti', saliency_map=None, DEVICE='cpu'):
+def return_sara(input_img, grid, generator='itti', saliency_map=None):
     '''
     Computes the SaRa output for the given input image. It uses the 
     generate_sara function internally. It returns the SaRa output image and 
@@ -497,7 +502,7 @@ def return_sara(input_img, grid, generator='itti', saliency_map=None, DEVICE='cp
     seg_dim = grid
 
     if saliency_map is None:
-        tex_segments = generate_segments(return_saliency(input_img, generator, DEVICE=DEVICE), seg_dim)
+        tex_segments = generate_segments(return_saliency(input_img, generator), seg_dim)
     else:
         tex_segments = generate_segments(saliency_map, seg_dim)
 
