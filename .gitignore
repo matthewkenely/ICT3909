@@ -2,3 +2,8 @@
 
 maskr-coco-ranking/Mask_RCNN/*.json
 maskr-coco-ranking/Mask_RCNN/*.h5
+
+ICT3909.code-workspace
+debug.log
+
+optimisations
