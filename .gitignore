@@ -7,3 +7,4 @@ ICT3909.code-workspace
 debug.log
 
 optimisations/saliency-generator/Siris Dataset/
+optimisations/saliency-generator/*.pkl
