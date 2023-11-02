@@ -6,4 +6,4 @@ maskr-coco-ranking/Mask_RCNN/*.h5
 ICT3909.code-workspace
 debug.log
 
-optimisations
+optimisations/saliency-generator/Siris Dataset/
