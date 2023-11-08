@@ -274,7 +274,8 @@ def calculate_score(H, sum, ds, cb, w):
     # H = wth root of H
     H = H ** w[0]
 
-    sum = np.log(sum)
+    if sum > 0:
+        sum = np.log(sum)
     sum = sum ** w[1]
 
     ds = ds ** w[2]
@@ -309,7 +310,9 @@ def calculate_entropy(img, w, dw) -> float:
 
     for px in pixels_frequency:
         t_prob = pixels_frequency[px] / total_pixels
-        entropy += (t_prob * math.log((1 / t_prob), 2))
+
+        if t_prob != 0:
+            entropy += (t_prob * math.log((1 / t_prob), 2))
 
     # entropy = entropy * wt * dw
 
