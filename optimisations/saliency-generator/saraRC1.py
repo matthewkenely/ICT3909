@@ -220,6 +220,12 @@ def return_saliency_batch(images, generator='deepgaze', deepgaze_model=None, eml
 
         for i in range(len(images)):
             saliency_map = cv2.resize(log_density_predictions[i, 0].cpu().numpy(), (img_widths[i], img_widths[i]))
+
+            saliency_map = cv2.normalize(saliency_map, None, 255, 0, cv2.NORM_MINMAX, cv2.CV_8UC1)
+
+            saliency_map = cv2.GaussianBlur(saliency_map, (31, 31), 10)
+            saliency_map = saliency_map // 16
+            
             saliency_maps.append(saliency_map)
 
         return saliency_maps
