@@ -508,8 +508,8 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
         
 
 
-        # Rank, score, entropy, sum, centre-bias, depth, index, quartile
-        sara_tuple = (ent[0], ent[1], ent[2], ent[3], ent[4], ent[5], print_index, quartile)
+        # Index, rank, score, entropy, sum, depth, centre-bias
+        sara_tuple = (ent[0], print_index, ent[1], ent[2], ent[3], ent[4], ent[5])
         sara_list_out.append(sara_tuple)
         print_index -= 1
 
@@ -546,6 +546,7 @@ def generate_sara(tex, tex_segments):
     dict_scores = {}
 
     for segment in segments_scores:
+        # Index: score, entropy, sum, depth, centre-bias
         dict_scores[segment[0]] = [segment[1], segment[2], segment[3], segment[4], segment[5]]
 
     # sorted_entropies = sorted(dict_entropies.items(),
@@ -566,6 +567,8 @@ def generate_sara(tex, tex_segments):
 
     tex_out, sara_list_out = generate_heatmap(
         tex, 1, sorted_scores, segments_coords)
+    
+    sara_list_out = list(reversed(sara_list_out))
     
     return tex_out, sara_list_out
 
