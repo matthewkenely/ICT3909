@@ -7,6 +7,8 @@ maskr-coco-ranking/Mask_RCNN/*.h5
 ICT3909.code-workspace
 debug.log
 
+optimisations/grid-size/instances_train2017.json
+
 optimisations/saliency-generator/ASSR
 optimisations/saliency-generator/*.pkl
 optimisations/saliency-generator/*.json
