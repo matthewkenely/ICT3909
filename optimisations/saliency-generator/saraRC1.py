@@ -220,6 +220,12 @@ def return_saliency_batch(images, generator='deepgaze', deepgaze_model=None, eml
 
         for i in range(len(images)):
             saliency_map = cv2.resize(log_density_predictions[i, 0].cpu().numpy(), (img_widths[i], img_widths[i]))
+
+            saliency_map = cv2.normalize(saliency_map, None, 255, 0, cv2.NORM_MINMAX, cv2.CV_8UC1)
+
+            saliency_map = cv2.GaussianBlur(saliency_map, (31, 31), 10)
+            saliency_map = saliency_map // 16
+            
             saliency_maps.append(saliency_map)
 
         return saliency_maps
@@ -268,7 +274,8 @@ def calculate_score(H, sum, ds, cb, w):
     # H = wth root of H
     H = H ** w[0]
 
-    sum = np.log(sum)
+    if sum > 0:
+        sum = np.log(sum)
     sum = sum ** w[1]
 
     ds = ds ** w[2]
@@ -303,7 +310,9 @@ def calculate_entropy(img, w, dw) -> float:
 
     for px in pixels_frequency:
         t_prob = pixels_frequency[px] / total_pixels
-        entropy += (t_prob * math.log((1 / t_prob), 2))
+
+        if t_prob != 0:
+            entropy += (t_prob * math.log((1 / t_prob), 2))
 
     # entropy = entropy * wt * dw
 
@@ -499,8 +508,8 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
         
 
 
-        # Rank, score, entropy, sum, centre-bias, depth, index, quartile
-        sara_tuple = (ent[0], ent[1], ent[2], ent[3], ent[4], ent[5], print_index, quartile)
+        # Index, rank, score, entropy, sum, depth, centre-bias
+        sara_tuple = (ent[0], print_index, ent[1], ent[2], ent[3], ent[4], ent[5])
         sara_list_out.append(sara_tuple)
         print_index -= 1
 
@@ -537,6 +546,7 @@ def generate_sara(tex, tex_segments):
     dict_scores = {}
 
     for segment in segments_scores:
+        # Index: score, entropy, sum, depth, centre-bias
         dict_scores[segment[0]] = [segment[1], segment[2], segment[3], segment[4], segment[5]]
 
     # sorted_entropies = sorted(dict_entropies.items(),
@@ -557,6 +567,8 @@ def generate_sara(tex, tex_segments):
 
     tex_out, sara_list_out = generate_heatmap(
         tex, 1, sorted_scores, segments_coords)
+    
+    sara_list_out = list(reversed(sara_list_out))
     
     return tex_out, sara_list_out
 
