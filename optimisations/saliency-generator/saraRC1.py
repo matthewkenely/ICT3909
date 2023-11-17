@@ -163,7 +163,7 @@ def return_saliency(img, generator='itti', deepgaze_model=None, emlnet_models=No
 
     saliency_map = cv2.GaussianBlur(saliency_map, (31, 31), 10)
     saliency_map = saliency_map // 16
-    
+
     return saliency_map
 
 
