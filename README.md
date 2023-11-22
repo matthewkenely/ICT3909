@@ -1,5 +1,5 @@
 # ICT3909 - Optimisation of Saliency-driven Image Content Ranking Parameters
-B.Sc. IT (Hons) Artificial Intelligence FYP Thesis
+B.Sc IT (Hons) Artificial Intelligence FYP Thesis
 
 In today’s digital age where the photograph is paramount in attention retention and interest stimulation, 
 there is an ever‐increasing need for a mathematical model of the
