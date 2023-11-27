@@ -161,8 +161,8 @@ def return_saliency(img, generator='itti', deepgaze_model=None, emlnet_models=No
     # Normalize saliency map
     saliency_map = cv2.normalize(saliency_map, None, 255, 0, cv2.NORM_MINMAX, cv2.CV_8UC1)
 
-    saliency_map = cv2.GaussianBlur(saliency_map, (31, 31), 10)
-    saliency_map = saliency_map // 16
+    # saliency_map = cv2.GaussianBlur(saliency_map, (31, 31), 10)
+    # saliency_map = saliency_map // 16
 
     return saliency_map
 
