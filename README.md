@@ -10,4 +10,4 @@ This study aims to optimise the components of <a href="	https://www.um.edu.mt/li
 Evaluation is carried out both quantitatively, by comparing the improved technique to current state-of-the-art models on the Salient Object Ranking (SOR) metric, as well as qualitatively.
 An experiment is conducted wherein participants are asked to click on the parts of news website interface images which grab their attention the most, and their mouse movements are tracked. This data is used to create a dataset estimating human visual attention, to which the results generated improved technique are compared. 
 
-The proposed optimisations are found to be successful, achieving a SOR score of 0.715 on a subset of the SALICON dataset, proving comparable to state-of-the-art performance and resulting in an increase of 0.061 when compared to the original technique.
+The proposed optimisations are found to be successful, achieving a SOR score of 0.718 on a subset of the SALICON dataset, proving comparable to state-of-the-art performance and resulting in an increase of 0.064 when compared to the original technique.
