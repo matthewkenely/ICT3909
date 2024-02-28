@@ -269,29 +269,29 @@ def calculate_score(H, sum, ds, cb, w):
     '''
 
     ## NEW
-    # H = H ** w[0]
+    H = H ** w[0]
 
-    # if sum > 0:
-    #     sum = np.log(sum)
-    # sum = sum ** w[1]
+    if sum > 0:
+        sum = np.log(sum)
+    sum = sum ** w[1]
 
-    # ds = ds ** w[2]
+    ds = ds ** w[2]
 
-    # cb = (cb + 1) ** w[3]
+    cb = (cb + 1) ** w[3]
 
-    # return H + sum + ds + cb
+    return H + sum + ds + cb
 
 
     ## OLD
-    H = H * w[0]
+    # H = H * w[0]
 
-    # if sum > 0:
-    #     sum = np.log(sum)
-    # sum = sum ** w[1]
+    # # if sum > 0:
+    # #     sum = np.log(sum)
+    # # sum = sum ** w[1]
 
-    ds = ds * w[2]
+    # ds = ds * w[2]
 
-    cb = cb * w[3]
+    # cb = cb * w[3]
 
     return H + ds + cb
 
@@ -355,10 +355,10 @@ def find_most_salient_segment(segments, kernel, dws):
         temp_score = calculate_score(temp_entropy, temp_sum, dws[i], kernel[i], w)
 
         ## NEW
-        # temp_tup = (i, temp_score, temp_entropy ** w[0], temp_sum ** w[1], (kernel[i] + 1) ** w[2], dws[i] ** w[3])
+        temp_tup = (i, temp_score, temp_entropy ** w[0], temp_sum ** w[1], (kernel[i] + 1) ** w[2], dws[i] ** w[3])
 
         ## OLD
-        temp_tup = (i, temp_score, temp_entropy * w[0], 0, (kernel[i] + 1) * w[2], dws[i] * w[3])
+        # temp_tup = (i, temp_score, temp_entropy * w[0], 0, (kernel[i] + 1) * w[2], dws[i] * w[3])
 
         # segments_scores.append((i, temp_score))
         segments_scores.append(temp_tup)
