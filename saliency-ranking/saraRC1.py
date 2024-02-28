@@ -161,8 +161,8 @@ def return_saliency(img, generator='itti', deepgaze_model=None, emlnet_models=No
     # Normalize saliency map
     saliency_map = cv2.normalize(saliency_map, None, 255, 0, cv2.NORM_MINMAX, cv2.CV_8UC1)
 
-    # saliency_map = cv2.GaussianBlur(saliency_map, (31, 31), 10)
-    # saliency_map = saliency_map // 16
+    saliency_map = cv2.GaussianBlur(saliency_map, (31, 31), 10)
+    saliency_map = saliency_map // 4
 
     return saliency_map
 
@@ -224,7 +224,7 @@ def return_saliency_batch(images, generator='deepgaze', deepgaze_model=None, eml
             saliency_map = cv2.normalize(saliency_map, None, 255, 0, cv2.NORM_MINMAX, cv2.CV_8UC1)
 
             saliency_map = cv2.GaussianBlur(saliency_map, (31, 31), 10)
-            saliency_map = saliency_map // 16
+            saliency_map = saliency_map // 8
             
             saliency_maps.append(saliency_map)
 
@@ -268,21 +268,32 @@ def calculate_score(H, sum, ds, cb, w):
     Calculates the saliency score of an image img using the entropy H, depth score ds, centre-bias cb and weights w. It returns the saliency score.
     '''
 
-    # Normalise H
-    # H = (H - 0) / (math.log(2, 256) - 0)
+    ## NEW
+    # H = H ** w[0]
 
-    # H = wth root of H
-    H = H ** w[0]
+    # if sum > 0:
+    #     sum = np.log(sum)
+    # sum = sum ** w[1]
 
-    if sum > 0:
-        sum = np.log(sum)
-    sum = sum ** w[1]
+    # ds = ds ** w[2]
 
-    ds = ds ** w[2]
+    # cb = (cb + 1) ** w[3]
 
-    cb = (cb + 1) ** w[3]
+    # return H + sum + ds + cb
 
-    return H + sum + ds + cb
+
+    ## OLD
+    H = H * w[0]
+
+    # if sum > 0:
+    #     sum = np.log(sum)
+    # sum = sum ** w[1]
+
+    ds = ds * w[2]
+
+    cb = cb * w[3]
+
+    return H + ds + cb
 
 
 def calculate_entropy(img, w, dw) -> float:
@@ -343,7 +354,11 @@ def find_most_salient_segment(segments, kernel, dws):
         
         temp_score = calculate_score(temp_entropy, temp_sum, dws[i], kernel[i], w)
 
-        temp_tup = (i, temp_score, temp_entropy ** w[0], temp_sum ** w[1], (kernel[i] + 1) ** w[2], dws[i] ** w[3])
+        ## NEW
+        # temp_tup = (i, temp_score, temp_entropy ** w[0], temp_sum ** w[1], (kernel[i] + 1) ** w[2], dws[i] ** w[3])
+
+        ## OLD
+        temp_tup = (i, temp_score, temp_entropy * w[0], 0, (kernel[i] + 1) * w[2], dws[i] * w[3])
 
         # segments_scores.append((i, temp_score))
         segments_scores.append(temp_tup)
