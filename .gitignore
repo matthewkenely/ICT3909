@@ -12,3 +12,6 @@ optimisations/grid-size/instances_train2017.json
 optimisations/saliency-generator/ASSR
 optimisations/saliency-generator/*.pkl
 optimisations/saliency-generator/*.json
+
+api.txt
+b-sc-402909-firebase*
