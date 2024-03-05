@@ -543,7 +543,7 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
             cv2.putText(text_overlay, str(print_index + 1), (x - 5, y),
                         font, 0.4, (255, 255, 255), 1, cv2.LINE_AA)
         elif mode == 2:
-            cv2.putText(text_overlay, str(print_index + 1), (x - 5, y),
+            cv2.putText(text_overlay, str(print_index + 1), (x1 + 5, y1 + 40),
                         cv2.FONT_HERSHEY_DUPLEX, 1.3, (255, 255, 255), 3, cv2.LINE_AA)
         
 
