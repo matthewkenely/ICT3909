@@ -293,7 +293,7 @@ def calculate_score(H, sum, ds, cb, w):
 
     # cb = cb * w[3]
 
-    return H + ds + cb
+    # return H + ds + cb
 
 
 def calculate_entropy(img, w, dw) -> float:
@@ -354,10 +354,10 @@ def find_most_salient_segment(segments, kernel, dws):
         
         temp_score = calculate_score(temp_entropy, temp_sum, dws[i], kernel[i], w)
 
-        ## NEW
+        # NEW
         temp_tup = (i, temp_score, temp_entropy ** w[0], temp_sum ** w[1], (kernel[i] + 1) ** w[2], dws[i] ** w[3])
 
-        ## OLD
+        # # OLD
         # temp_tup = (i, temp_score, temp_entropy * w[0], 0, (kernel[i] + 1) * w[2], dws[i] * w[3])
 
         # segments_scores.append((i, temp_score))
@@ -450,7 +450,7 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
     scheme of the heatmap. It returns the image with the heatmap overlay 
     and a list of segment scores.
 
-    mode: 0 for white grid, 1 for color-coded grid
+    mode: 0 for white grid, 1 for color-coded grid, 2 for interpolated
     '''
 
     font = cv2.FONT_HERSHEY_SIMPLEX
@@ -458,6 +458,25 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
     print_index = len(sorted_seg_scores) - 1
     set_value = int(0.25 * len(sorted_seg_scores))
     color = (0, 0, 0)
+
+
+    # Check number of segments
+    n = len(sorted_seg_scores)
+
+    # Interpolate colors between lb and ub based on the number of segments
+    colors = []
+
+    lb = (1, 1, 1)
+    ub = (255, 255, 255)
+
+    for i in range(n):
+        r = int(lb[0] + (ub[0] - lb[0]) * (i / n))
+        g = int(lb[1] + (ub[1] - lb[1]) * (i / n))
+        b = int(lb[2] + (ub[2] - lb[2]) * (i / n))
+
+        colors.append((r, g, b))
+
+    colors = list(reversed(colors))
 
     max_x = 0
     max_y = 0
@@ -467,34 +486,37 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
 
     sara_list_out = []
 
+    
     for ent in reversed(sorted_seg_scores):
-        quartile = 0
-        if mode == 0:
-            color = (255, 255, 255)
-            t = 4
-        elif mode == 1:
-            if print_index + 1 <= set_value:
-                color = (0, 0, 255, 255)
-                t = 2
-                quartile = 1
-            elif print_index + 1 <= set_value * 2:
-                color = (0, 128, 255, 192)
+        if mode in [0, 1]:
+            quartile = 0
+            if mode == 0:
+                color = (255, 255, 255)
                 t = 4
-                quartile = 2
-            elif print_index + 1 <= set_value * 3:
-                color = (0, 255, 255, 128)
-                t = 4
-                t = 6
-                quartile = 3
-            # elif print_index + 1 <= set_value * 4:
-            #     color = (0, 250, 0, 64)
-            #     t = 8
-            #     quartile = 4
-            else:
-                color = (0, 250, 0, 64)
-                t = 8
-                quartile = 4
-
+            elif mode == 1:
+                if print_index + 1 <= set_value:
+                    color = (0, 0, 255, 255)
+                    t = 2
+                    quartile = 1
+                elif print_index + 1 <= set_value * 2:
+                    color = (0, 128, 255, 192)
+                    t = 4
+                    quartile = 2
+                elif print_index + 1 <= set_value * 3:
+                    color = (0, 255, 255, 128)
+                    t = 4
+                    t = 6
+                    quartile = 3
+                # elif print_index + 1 <= set_value * 4:
+                #     color = (0, 250, 0, 64)
+                #     t = 8
+                #     quartile = 4
+                else:
+                    color = (0, 250, 0, 64)
+                    t = 8
+                    quartile = 4
+        elif mode == 2:
+            color = colors[print_index]
 
         x1 = segments_coords[ent[0]][1]
         y1 = segments_coords[ent[0]][2]
@@ -510,7 +532,6 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
         y = int((y1 + y2) / 2)
 
 
-
         # fill rectangle
         cv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)
 
@@ -518,10 +539,13 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
         # put text in the middle of the rectangle
         
         # white text
-        cv2.putText(text_overlay, str(print_index), (x - 5, y),
-                    font, .4, (255, 255, 255), 1, cv2.LINE_AA)
+        if mode in [0, 1]:
+            cv2.putText(text_overlay, str(print_index + 1), (x - 5, y),
+                        font, 0.4, (255, 255, 255), 1, cv2.LINE_AA)
+        elif mode == 2:
+            cv2.putText(text_overlay, str(print_index + 1), (x - 5, y),
+                        cv2.FONT_HERSHEY_DUPLEX, 1.3, (255, 255, 255), 3, cv2.LINE_AA)
         
-
 
         # Index, rank, score, entropy, sum, depth, centre-bias
         sara_tuple = (ent[0], print_index, ent[1], ent[2], ent[3], ent[4], ent[5])
@@ -538,11 +562,15 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
 
     img[text_overlay > 128] = text_overlay[text_overlay > 128]
 
-    
-    return img, sara_list_out
+    if mode in [0, 1]:
+        return img, sara_list_out
+    elif mode == 2:
+        heatmap = overlay[0:max_y, 0:max_x]
+
+        return [heatmap, text_overlay], sara_list_out
 
 
-def generate_sara(tex, tex_segments):
+def generate_sara(tex, tex_segments, mode):
     '''
     Generates the SaRa (Salient Region Annotation) output by calculating 
     saliency scores for the segments of the given texture image tex. It 
@@ -580,33 +608,48 @@ def generate_sara(tex, tex_segments):
     # tex_out, sara_list_out = generate_heatmap(
     #     tex, 1, sorted_entropies, segments_coords)
 
-    tex_out, sara_list_out = generate_heatmap(
-        tex, 1, sorted_scores, segments_coords)
+    if mode in [0, 1]:
+        tex_out, sara_list_out = generate_heatmap(
+            tex, mode, sorted_scores, segments_coords)
+    elif mode == 2:
+        [tex_out, text_overlay], sara_list_out = generate_heatmap(
+            tex, mode, sorted_scores, segments_coords)
     
     sara_list_out = list(reversed(sara_list_out))
     
-    return tex_out, sara_list_out
+    if mode in [0, 1]:
+        return tex_out, sara_list_out
+    elif mode == 2:
+        return [tex_out, text_overlay], sara_list_out
 
 
-def return_sara(input_img, grid, generator='itti', saliency_map=None):
+def return_sara(input_img, grid=9, generator='itti', saliency_map=None, segments=None, coords=None, mode=1):
     '''
     Computes the SaRa output for the given input image. It uses the 
     generate_sara function internally. It returns the SaRa output image and 
     a list of segment scores.
     '''
 
-    global seg_dim
+    global seg_dim, segments_coords
     seg_dim = grid
 
     if saliency_map is None:
         saliency_map = return_saliency(input_img, generator)
 
-    tex_segments = generate_segments(saliency_map, seg_dim)
+    if segments is None:
+        tex_segments = generate_segments(saliency_map, seg_dim)
+    else:
+        tex_segments = segments
+        segments_coords = coords
 
     # tex_segments = generate_segments(input_img, seg_dim)
-    sara_output, sara_list_output = generate_sara(input_img, tex_segments)
-
-    return sara_output, sara_list_output
+        
+    if mode in [0, 1]:
+        sara_output, sara_list_output = generate_sara(input_img, tex_segments, mode)
+        return sara_output, sara_list_output
+    elif mode == 2:
+        [sara_output, text_overlay], sara_list_output = generate_sara(input_img, tex_segments, mode)
+        return [sara_output, text_overlay], sara_list_output
 
 
 def mean_squared_error(image_a, image_b) -> float:
@@ -642,4 +685,3 @@ def reset():
     gt_segments = []
     dws = []
     sara_list = []
-
