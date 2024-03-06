@@ -578,7 +578,7 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
             (text_width, text_height), _ = cv2.getTextSize(text_to_display, cv2.FONT_HERSHEY_DUPLEX, font_size, thickness)
 
             # If width or height are greater than the segment, reduce font size
-            if text_width > x2 - x1 or text_height > y2 - y1:
+            if text_width > (x2 - x1) - 20 or text_height > (y2 - y1) - 20:
                 font_size = 0.8
                 thickness = 2
                 (text_width, text_height), _ = cv2.getTextSize(text_to_display, cv2.FONT_HERSHEY_DUPLEX, font_size, thickness)
@@ -597,20 +597,21 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
         sara_list_out.append(sara_tuple)
         print_index -= 1
 
-    # crop the overlay to up to x2 and y2
-    overlay = overlay[0:max_y, 0:max_x]
-    text_overlay = text_overlay[0:max_y, 0:max_x]
-    img = img[0:max_y, 0:max_x]
-
-    
-    img = cv2.addWeighted(overlay, 0.3, img, 0.7, 0, img)
-
-    img[text_overlay > 128] = text_overlay[text_overlay > 128]
-
     if mode in [0, 1]:
+        # crop the overlay to up to x2 and y2
+        overlay = overlay[0:max_y, 0:max_x]
+        text_overlay = text_overlay[0:max_y, 0:max_x]
+        img = img[0:max_y, 0:max_x]
+
+        
+        img = cv2.addWeighted(overlay, 0.3, img, 0.7, 0, img)
+
+        img[text_overlay > 128] = text_overlay[text_overlay > 128]
+
         return img, sara_list_out
     elif mode == 2:
-        heatmap = overlay[0:max_y, 0:max_x]
+        heatmap = overlay[0:img.shape[0], 0:img.shape[1]]
+        text_overlay = text_overlay[0:img.shape[0], 0:img.shape[1]]
 
         return [heatmap, text_overlay], sara_list_out
 
