@@ -103,6 +103,9 @@ def return_saliency(img, generator='itti', deepgaze_model=None, emlnet_models=No
         # image = face()
         image = img
 
+        # Resize to half
+        image = cv2.resize(image, (image.shape[1] // 2, image.shape[0] // 2))
+
         # load precomputed centerbias log density (from MIT1003) over a 1024x1024 image
         # you can download the centerbias from https://github.com/matthias-k/DeepGaze/releases/download/v1.0.0/centerbias_mit1003.npy
         # alternatively, you can use a uniform centerbias via `centerbias_template = np.zeros((1024, 1024))`.
@@ -484,6 +487,8 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
     overlay = np.zeros_like(img, dtype=np.uint8)
     text_overlay = np.zeros_like(img, dtype=np.uint8)
 
+    text_overlay = cv2.resize(text_overlay, (0, 0), fx=2, fy=2)
+
     sara_list_out = []
 
     
@@ -543,10 +548,28 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
             cv2.putText(text_overlay, str(print_index + 1), (x - 5, y),
                         font, 0.4, (255, 255, 255), 1, cv2.LINE_AA)
         elif mode == 2:
-            cv2.putText(text_overlay, str(print_index + 1), (x1 + 5, y1 + 40),
-                        cv2.FONT_HERSHEY_DUPLEX, 1.3, (255, 255, 255), 3, cv2.LINE_AA)
-        
+            center_x = (x1 + x2) // 2
+            center_y = (y1 + y2) // 2
 
+            font_size = 1.6
+
+            thickness = 3
+
+            text_to_display = f'{str(print_index + 1)}'
+
+            (text_width, text_height), _ = cv2.getTextSize(text_to_display, cv2.FONT_HERSHEY_DUPLEX, font_size, thickness)
+
+            # If width or height are greater than the segment, reduce font size
+            if text_width > x2 - x1 or text_height > y2 - y1:
+                font_size = 0.8
+                thickness = 2
+                (text_width, text_height), _ = cv2.getTextSize(text_to_display, cv2.FONT_HERSHEY_DUPLEX, font_size, thickness)
+
+            text_position = (center_x - text_width // 2, center_y + 20) 
+
+
+            cv2.putText(text_overlay, str(print_index + 1), text_position, cv2.FONT_HERSHEY_DUPLEX, font_size, (255, 255, 255), thickness, cv2.LINE_AA)
+        
         # Index, rank, score, entropy, sum, depth, centre-bias
         sara_tuple = (ent[0], print_index, ent[1], ent[2], ent[3], ent[4], ent[5])
         sara_list_out.append(sara_tuple)
