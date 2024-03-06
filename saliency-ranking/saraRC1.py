@@ -481,6 +481,8 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
 
     colors = list(reversed(colors))
 
+    print(colors)
+
     max_x = 0
     max_y = 0
 
@@ -491,7 +493,8 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
 
     sara_list_out = []
 
-    
+    done_coords = {}
+
     for ent in reversed(sorted_seg_scores):
         if mode in [0, 1]:
             quartile = 0
@@ -537,12 +540,27 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
         y = int((y1 + y2) / 2)
 
 
+
         # fill rectangle
         cv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)
 
         cv2.rectangle(overlay, (x1, y1), (x2, y2), (0, 0, 0), 1)
-        # put text in the middle of the rectangle
+
+        # Check if this will overlap with a previous segment
+        for coord in done_coords:
+            if x1 < done_coords[coord]['coords'][2] and x2 > done_coords[coord]['coords'][0] and y1 < done_coords[coord]['coords'][3] and y2 > done_coords[coord]['coords'][1]:
+                # Check if this is larger than the previous segment
+                this_size = (x2 - x1) * (y2 - y1)
+                previous_size = (done_coords[coord]['coords'][2] - done_coords[coord]['coords'][0]) * (done_coords[coord]['coords'][3] - done_coords[coord]['coords'][1])
+
+                if this_size > previous_size:
+                    # Redo the previous segment
+                    cv2.rectangle(overlay, (done_coords[coord]['coords'][0], done_coords[coord]['coords'][1]), (done_coords[coord]['coords'][2], done_coords[coord]['coords'][3]), done_coords[coord]['color'], -1)
+
+                    cv2.rectangle(overlay, (done_coords[coord]['coords'][0], done_coords[coord]['coords'][1]), (done_coords[coord]['coords'][2], done_coords[coord]['coords'][3]), (0, 0, 0), 1)
+                
         
+        # put text in the middle of the rectangle
         # white text
         if mode in [0, 1]:
             cv2.putText(text_overlay, str(print_index + 1), (x - 5, y),
@@ -569,6 +587,10 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
 
 
             cv2.putText(text_overlay, str(print_index + 1), text_position, cv2.FONT_HERSHEY_DUPLEX, font_size, (255, 255, 255), thickness, cv2.LINE_AA)
+
+            done_coords[print_index] = {}
+            done_coords[print_index]['coords'] = (x1, y1, x2, y2)
+            done_coords[print_index]['color'] = color
         
         # Index, rank, score, entropy, sum, depth, centre-bias
         sara_tuple = (ent[0], print_index, ent[1], ent[2], ent[3], ent[4], ent[5])
