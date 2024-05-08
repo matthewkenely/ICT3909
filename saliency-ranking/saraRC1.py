@@ -18,6 +18,8 @@ import pySaliencyMap
 # Entropy, sum, depth, centre-bias
 WEIGHTS = (1, 1, 1, 1)
 
+DO_LOG = True
+
 # segments_entropies = []
 segments_scores = []
 segments_coords = []
@@ -272,17 +274,32 @@ def calculate_score(H, sum, ds, cb, w):
     '''
 
     ## NEW
-    H = H ** w[0]
+    if w[0] == 0:
+        H = 0
+    else:
+        H = H ** w[0]
 
-    if sum > 0:
-        sum = np.log(sum)
-    sum = sum ** w[1]
+    if w[1] == 0:
+        sum = 0
+    else:
+        sum = sum ** w[1]
 
-    ds = ds ** w[2]
+    if DO_LOG:
+        if sum > 0:
+            sum = np.log(sum)
 
-    cb = (cb + 1) ** w[3]
 
-    return H + sum + ds + cb
+    if w[2] == 0:
+        ds = 0
+    else:
+        ds = ds ** w[2]
+
+    if w[3] == 0:
+        cb = 0
+    else:
+        cb = (cb + 1) ** w[3]
+
+    return (H + sum + ds + cb), H, sum, ds, cb
 
 
     ## OLD
@@ -355,10 +372,10 @@ def find_most_salient_segment(segments, kernel, dws):
 
         w = WEIGHTS
         
-        temp_score = calculate_score(temp_entropy, temp_sum, dws[i], kernel[i], w)
+        temp_score, res_entropy, res_sum, res_dws, res_kernel = calculate_score(temp_entropy, temp_sum, dws[i], kernel[i], w)
 
         # NEW
-        temp_tup = (i, temp_score, temp_entropy ** w[0], temp_sum ** w[1], (kernel[i] + 1) ** w[2], dws[i] ** w[3])
+        temp_tup = (i, temp_score, res_entropy, res_sum, res_dws, res_kernel)
 
         # # OLD
         # temp_tup = (i, temp_score, temp_entropy * w[0], 0, (kernel[i] + 1) * w[2], dws[i] * w[3])
@@ -720,7 +737,7 @@ def reset():
 
     # global segments_entropies, segments_scores, segments_coords, seg_dim, segments, gt_segments, dws, sara_list
 
-    global segments_scores, segments_coords, seg_dim, segments, gt_segments, dws, sara_list
+    global segments_scores, segments_coords, seg_dim, segments, gt_segments, dws, sara_list, WEIGHTS, DO_LOG
 
     # segments_entropies = []
     segments_scores = []
@@ -731,3 +748,6 @@ def reset():
     gt_segments = []
     dws = []
     sara_list = []
+
+    WEIGHTS = (1, 1, 1, 1)
+    DO_LOG = True
