@@ -1,0 +1,70 @@
+%YAML:1.0
+---
+FileVersion: 2
+NextUserId: 2
+NextMediaId: 10
+NextAOIId: 7
+NextWebId: 0
+Media:
+   - { Id:0, PlaybackIndex:0, Name:"DESKTOP_A.png", Type:0,
+       Path:"DESKTOP_A.png", Duration:10., Randomize:0, Scale:1,
+       BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:1, PlaybackIndex:1, Name:"ILLUM_14_03_24_A.png", Type:0,
+       Path:"ILLUM_14_03_24_A.png", Duration:10., Randomize:1, Scale:1,
+       BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:2, PlaybackIndex:2, Name:"INDEPENDENT_14_03_24_A.png", Type:0,
+       Path:"INDEPENDENT_14_03_24_A.png", Duration:10., Randomize:1,
+       Scale:1, BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:3, PlaybackIndex:3, Name:"LOVIN_MALTA_04_03_24_A.png", Type:0,
+       Path:"LOVIN_MALTA_04_03_24_A.png", Duration:10., Randomize:1,
+       Scale:1, BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:4, PlaybackIndex:4, Name:"MALTA_TODAY_14_03_24_A.png", Type:0,
+       Path:"MALTA_TODAY_14_03_24_A.png", Duration:10., Randomize:1,
+       Scale:1, BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:5, PlaybackIndex:5, Name:"MOBILE_A.png", Type:0,
+       Path:"MOBILE_A.png", Duration:10., Randomize:1, Scale:1, BK_RED:50,
+       BK_GREEN:50, BK_BLUE:50 }
+   - { Id:6, PlaybackIndex:6, Name:"THE_SHIFT_14_03_24_A.png", Type:0,
+       Path:"THE_SHIFT_14_03_24_A.png", Duration:10., Randomize:1,
+       Scale:1, BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:7, PlaybackIndex:7, Name:"TIMES_OF_MALTA_15_03_24_A.png",
+       Type:0, Path:"TIMES_OF_MALTA_15_03_24_A.png", Duration:10.,
+       Randomize:1, Scale:1, BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:8, PlaybackIndex:8, Name:"TIMES_OF_MALTA_29_02_24_A.jpg",
+       Type:0, Path:"TIMES_OF_MALTA_29_02_24_A.jpg", Duration:10.,
+       Randomize:1, Scale:1, BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:9, PlaybackIndex:9, Name:"TVM_14_03_24_A.png", Type:0,
+       Path:"TVM_14_03_24_A.png", Duration:10., Randomize:1, Scale:1,
+       BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+UserData:
+   - { Id:0, Name:User 0, Age:0, Gender:M, OffsetX:0., OffsetY:0.,
+       Color:[ 0., 0., 255., 0. ], DataRecords:6129 }
+   - { Id:1, Name:User 1, Age:0, Gender:M, OffsetX:0., OffsetY:0.,
+       Color:[ 0., 255., 0., 0. ], DataRecords:0 }
+AOI:
+   - { Id:0, Name:AOI 0, MediaID:0, DataID:0, WebID:0, DrawType:0,
+       Color:[ 255., 0., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       1.7537826299667358e-01, 2.4449878931045532e-01,
+       2.6891332864761353e-01, 3.3618587255477905e-01 ] } ] }
+   - { Id:1, Name:AOI 1, MediaID:0, DataID:0, WebID:0, DrawType:0,
+       Color:[ 0., 0., 255., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       4.7867947816848755e-01, 2.4449875950813293e-01,
+       1.4167815446853638e-01, 2.5916868448257446e-01 ] } ] }
+   - { Id:2, Name:AOI 2, MediaID:0, DataID:0, WebID:0, DrawType:0,
+       Color:[ 0., 255., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       6.8363136053085327e-01, 2.4327628314495087e-01,
+       1.4099037647247314e-01, 2.3838631808757782e-01 ] } ] }
+   - { Id:3, Name:AOI 3, MediaID:0, DataID:0, WebID:0, DrawType:0,
+       Color:[ 44., 0., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       4.7799175977706909e-01, 5.3667479753494263e-01,
+       1.4442914724349976e-01, 2.0782399177551270e-01 ] } ] }
+   - { Id:4, Name:AOI 4, MediaID:0, DataID:0, WebID:0, DrawType:0,
+       Color:[ 185., 26., 255., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 6.8294358253479004e-01, 5.3545230627059937e-01,
+       1.4718019962310791e-01, 2.4449878931045532e-01 ] } ] }
+   - { Id:5, Name:AOI 5, MediaID:0, DataID:0, WebID:0, DrawType:0,
+       Color:[ 0., 211., 255., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       0., 0., 9.9724894762039185e-01, 1.0880195349454880e-01 ] } ] }
+   - { Id:6, Name:AOI 6, MediaID:0, DataID:0, WebID:0, DrawType:0,
+       Color:[ 0., 88., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       0., 9.2053788900375366e-01, 1., 7.9462110996246338e-02 ] } ] }

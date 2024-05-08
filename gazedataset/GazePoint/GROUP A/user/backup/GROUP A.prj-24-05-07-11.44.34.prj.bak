@@ -1,0 +1,698 @@
+%YAML:1.0
+---
+FileVersion: 2
+NextUserId: 5
+NextMediaId: 10
+NextAOIId: 185
+NextWebId: 0
+Media:
+   - { Id:0, PlaybackIndex:0, Name:"DESKTOP_A.png", Type:0,
+       Path:"DESKTOP_A.png", Duration:10., Randomize:0, Scale:1,
+       BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:1, PlaybackIndex:1, Name:"ILLUM_14_03_24_A.png", Type:0,
+       Path:"ILLUM_14_03_24_A.png", Duration:10., Randomize:1, Scale:1,
+       BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:2, PlaybackIndex:2, Name:"INDEPENDENT_14_03_24_A.png", Type:0,
+       Path:"INDEPENDENT_14_03_24_A.png", Duration:10., Randomize:1,
+       Scale:1, BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:3, PlaybackIndex:3, Name:"LOVIN_MALTA_04_03_24_A.png", Type:0,
+       Path:"LOVIN_MALTA_04_03_24_A.png", Duration:10., Randomize:1,
+       Scale:1, BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:4, PlaybackIndex:4, Name:"MALTA_TODAY_14_03_24_A.png", Type:0,
+       Path:"MALTA_TODAY_14_03_24_A.png", Duration:10., Randomize:1,
+       Scale:1, BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:5, PlaybackIndex:5, Name:"MOBILE_A.png", Type:0,
+       Path:"MOBILE_A.png", Duration:10., Randomize:1, Scale:1, BK_RED:50,
+       BK_GREEN:50, BK_BLUE:50 }
+   - { Id:6, PlaybackIndex:6, Name:"THE_SHIFT_14_03_24_A.png", Type:0,
+       Path:"THE_SHIFT_14_03_24_A.png", Duration:10., Randomize:1,
+       Scale:1, BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:7, PlaybackIndex:7, Name:"TIMES_OF_MALTA_15_03_24_A.png",
+       Type:0, Path:"TIMES_OF_MALTA_15_03_24_A.png", Duration:10.,
+       Randomize:1, Scale:1, BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:8, PlaybackIndex:8, Name:"TIMES_OF_MALTA_29_02_24_A.jpg",
+       Type:0, Path:"TIMES_OF_MALTA_29_02_24_A.jpg", Duration:10.,
+       Randomize:1, Scale:1, BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:9, PlaybackIndex:9, Name:"TVM_14_03_24_A.png", Type:0,
+       Path:"TVM_14_03_24_A.png", Duration:10., Randomize:1, Scale:1,
+       BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+UserData:
+   - { Id:4, Name:User 4, Age:0, Gender:M, OffsetX:0., OffsetY:0.,
+       Color:[ 0., 0., 255., 0. ], DataRecords:173 }
+AOI:
+   - { Id:0, Name:AOI 0, MediaID:0, DataID:0, WebID:0, DrawType:0,
+       Color:[ 255., 0., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       1.7537826299667358e-01, 2.4449878931045532e-01,
+       2.6891332864761353e-01, 3.3618587255477905e-01 ] } ] }
+   - { Id:1, Name:AOI 1, MediaID:0, DataID:0, WebID:0, DrawType:0,
+       Color:[ 0., 0., 255., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       4.7867947816848755e-01, 2.4449875950813293e-01,
+       1.4167815446853638e-01, 2.0293396711349487e-01 ] } ] }
+   - { Id:2, Name:AOI 2, MediaID:0, DataID:0, WebID:0, DrawType:0,
+       Color:[ 0., 255., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       6.8363136053085327e-01, 2.4327628314495087e-01,
+       1.4099037647247314e-01, 2.0171152055263519e-01 ] } ] }
+   - { Id:3, Name:AOI 3, MediaID:0, DataID:0, WebID:0, DrawType:0,
+       Color:[ 44., 0., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       4.7799175977706909e-01, 5.3667479753494263e-01,
+       1.4442914724349976e-01, 2.0782399177551270e-01 ] } ] }
+   - { Id:4, Name:AOI 4, MediaID:0, DataID:0, WebID:0, DrawType:0,
+       Color:[ 185., 26., 255., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 6.8156808614730835e-01, 5.2567231655120850e-01,
+       1.4718019962310791e-01, 2.1760392189025879e-01 ] } ] }
+   - { Id:5, Name:AOI 5, MediaID:0, DataID:0, WebID:0, DrawType:0,
+       Color:[ 0., 211., 255., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       0., 0., 9.9724894762039185e-01, 1.0880195349454880e-01 ] } ] }
+   - { Id:6, Name:AOI 6, MediaID:0, DataID:0, WebID:0, DrawType:0,
+       Color:[ 0., 88., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       0., 9.2053788900375366e-01, 1., 7.9462110996246338e-02 ] } ] }
+   - { Id:7, Name:AOI 7, MediaID:0, DataID:0, WebID:0, DrawType:0,
+       Color:[ 255., 132., 132., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 4.7661623358726501e-01, 4.4376528263092041e-01,
+       1.4236590266227722e-01, 6.1124712228775024e-02 ] } ] }
+   - { Id:8, Name:AOI 8, MediaID:0, DataID:0, WebID:0, DrawType:0,
+       Color:[ 70., 79., 158., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       4.7524070739746094e-01, 7.4816626310348511e-01,
+       1.2998622655868530e-01, 6.1124682426452637e-02 ] } ] }
+   - { Id:9, Name:AOI 9, MediaID:0, DataID:0, WebID:0, DrawType:0,
+       Color:[ 193., 255., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       6.8363136053085327e-01, 4.4009780883789062e-01,
+       1.2310868501663208e-01, 6.1124682426452637e-02 ] } ] }
+   - { Id:10, Name:AOI 10, MediaID:0, DataID:0, WebID:0, DrawType:0,
+       Color:[ 149., 132., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       6.8431913852691650e-01, 7.4449878931045532e-01,
+       1.3273727893829346e-01, 6.1124682426452637e-02 ] } ] }
+   - { Id:11, Name:AOI 11, MediaID:0, DataID:0, WebID:0, DrawType:0,
+       Color:[ 123., 0., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       1.7331498861312866e-01, 5.8679699897766113e-01,
+       2.7647867798805237e-01, 9.5354557037353516e-02 ] } ] }
+   - { Id:14, Name:AOI 12, MediaID:1, DataID:0, WebID:0, DrawType:0,
+       Color:[ 255., 18., 211., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 3.2608695328235626e-02, 1.5892419964075089e-02,
+       9.3695652484893799e-01, 9.7799509763717651e-02 ] } ] }
+   - { Id:15, Name:AOI 13, MediaID:1, DataID:0, WebID:0, DrawType:0,
+       Color:[ 106., 26., 123., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 0., 2.7261614799499512e-01, 1., 3.6063569784164429e-01 ] } ] }
+   - { Id:16, Name:AOI 16, MediaID:1, DataID:0, WebID:0, DrawType:0,
+       Color:[ 97., 18., 246., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       0., 6.4425426721572876e-01, 1., 1.0268950462341309e-01 ] } ] }
+   - { Id:17, Name:AOI 17, MediaID:1, DataID:0, WebID:0, DrawType:0,
+       Color:[ 132., 193., 255., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 6.5217390656471252e-03, 7.7506113052368164e-01,
+       9.4782608747482300e-01, 8.6797058582305908e-02 ] } ] }
+   - { Id:18, Name:AOI 18, MediaID:1, DataID:0, WebID:0, DrawType:0,
+       Color:[ 9., 35., 35., 0. ], AOIRect:[] }
+   - { Id:19, Name:AOI 19, MediaID:1, DataID:0, WebID:0, DrawType:0,
+       Color:[ 123., 167., 141., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 0., 1.2469437718391418e-01, 1., 1.3569682836532593e-01 ] } ] }
+   - { Id:20, Name:AOI 20, MediaID:2, DataID:0, WebID:0, DrawType:0,
+       Color:[ 9., 132., 246., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       5.9078407287597656e-01, 1.3202933967113495e-01,
+       1.5955978631973267e-01, 2.3960880935192108e-01 ] } ] }
+   - { Id:21, Name:AOI 21, MediaID:2, DataID:0, WebID:0, DrawType:0,
+       Color:[ 0., 114., 132., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       5.9284734725952148e-01, 3.8875305652618408e-01,
+       1.5818428993225098e-01, 2.2982883453369141e-01 ] } ] }
+   - { Id:22, Name:AOI 22, MediaID:2, DataID:0, WebID:0, DrawType:0,
+       Color:[ 255., 246., 114., 0. ], AOIRect:[ { Start:10., Type:1,
+       Rect:[ 5.8872079849243164e-01, 6.2836188077926636e-01,
+       1.6231083869934082e-01, 3.7163811922073364e-01 ] } ] }
+   - { Id:23, Name:AOI 23, MediaID:2, DataID:0, WebID:0, DrawType:0,
+       Color:[ 255., 193., 158., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 2.4759285151958466e-01, 1.2224939418956637e-03,
+       5.0275099277496338e-01, 1.2102689594030380e-01 ] } ] }
+   - { Id:24, Name:AOI 24, MediaID:2, DataID:0, WebID:0, DrawType:0,
+       Color:[ 123., 97., 114., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 2.4415405094623566e-01, 1.4425428211688995e-01,
+       6.3273742794990540e-02, 6.1124697327613831e-02 ] } ] }
+   - { Id:25, Name:AOI 25, MediaID:2, DataID:0, WebID:0, DrawType:0,
+       Color:[ 0., 0., 158., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       2.4484181404113770e-01, 2.5061124563217163e-01,
+       1.0866576433181763e-01, 1.1735939979553223e-01 ] } ] }
+   - { Id:26, Name:AOI 26, MediaID:2, DataID:0, WebID:0, DrawType:0,
+       Color:[ 255., 79., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       2.4415405094623566e-01, 4.6821516752243042e-01,
+       1.0797800123691559e-01, 1.1491441726684570e-01 ] } ] }
+   - { Id:27, Name:AOI 27, MediaID:2, DataID:0, WebID:0, DrawType:0,
+       Color:[ 149., 70., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       2.4209079146385193e-01, 7.2249388694763184e-01,
+       1.1004126071929932e-01, 1.2102687358856201e-01 ] } ] }
+   - { Id:28, Name:AOI 28, MediaID:2, DataID:0, WebID:0, DrawType:0,
+       Color:[ 0., 255., 211., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       2.4690508842468262e-01, 9.3887531757354736e-01,
+       1.0110041499137878e-01, 6.1124682426452637e-02 ] } ] }
+   - { Id:29, Name:AOI 29, MediaID:2, DataID:0, WebID:0, DrawType:0,
+       Color:[ 211., 79., 185., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 3.5625860095024109e-01, 2.4938875436782837e-01,
+       2.2558459639549255e-01, 1.7848411202430725e-01 ] } ] }
+   - { Id:30, Name:AOI 30, MediaID:2, DataID:0, WebID:0, DrawType:0,
+       Color:[ 26., 0., 62., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       3.5557085275650024e-01, 4.6699267625808716e-01,
+       2.2420907020568848e-01, 2.2493886947631836e-01 ] } ] }
+   - { Id:31, Name:AOI 31, MediaID:2, DataID:0, WebID:0, DrawType:0,
+       Color:[ 176., 255., 237., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 3.5625860095024109e-01, 7.2004890441894531e-01,
+       2.2627237439155579e-01, 1.7726159095764160e-01 ] } ] }
+   - { Id:32, Name:AOI 32, MediaID:2, DataID:0, WebID:0, DrawType:0,
+       Color:[ 97., 123., 255., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 3.5625860095024109e-01, 9.4009780883789062e-01,
+       2.2145804762840271e-01, 5.9902191162109375e-02 ] } ] }
+   - { Id:33, Name:AOI 33, MediaID:3, DataID:0, WebID:0, DrawType:0,
+       Color:[ 123., 255., 70., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 9.3478262424468994e-02, 0., 8.1304347515106201e-01,
+       3.8019558787345886e-01 ] } ] }
+   - { Id:34, Name:AOI 34, MediaID:3, DataID:0, WebID:0, DrawType:0,
+       Color:[ 97., 167., 18., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       0., 3.7652811408042908e-01, 1., 8.6797058582305908e-02 ] } ] }
+   - { Id:35, Name:AOI 35, MediaID:3, DataID:0, WebID:0, DrawType:0,
+       Color:[ 167., 167., 211., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 1.9565217196941376e-02, 5.0000000000000000e-01,
+       9.6304345130920410e-01, 3.0684596300125122e-01 ] } ] }
+   - { Id:36, Name:AOI 36, MediaID:3, DataID:0, WebID:0, DrawType:0,
+       Color:[ 132., 79., 211., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 2.6086956262588501e-02, 8.2396090030670166e-01,
+       9.5217394828796387e-01, 1.7603909969329834e-01 ] } ] }
+   - { Id:37, Name:AOI 37, MediaID:4, DataID:0, WebID:0, DrawType:0,
+       Color:[ 193., 0., 106., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       3.0674001574516296e-01, 4.8899757675826550e-03,
+       3.8651993870735168e-01, 9.2909537255764008e-02 ] } ] }
+   - { Id:38, Name:AOI 38, MediaID:4, DataID:0, WebID:0, DrawType:0,
+       Color:[ 70., 97., 44., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       1.9601100683212280e-01, 9.4132021069526672e-02,
+       6.1279225349426270e-01, 6.1124697327613831e-02 ] } ] }
+   - { Id:39, Name:AOI 39, MediaID:4, DataID:0, WebID:0, DrawType:0,
+       Color:[ 246., 149., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       2.1733149886131287e-01, 2.1026894450187683e-01,
+       3.6795046925544739e-01, 4.3031784892082214e-01 ] } ] }
+   - { Id:40, Name:AOI 40, MediaID:4, DataID:0, WebID:0, DrawType:0,
+       Color:[ 79., 62., 9., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       2.2352132201194763e-01, 6.4425426721572876e-01,
+       3.5625860095024109e-01, 1.4180928468704224e-01 ] } ] }
+   - { Id:41, Name:AOI 41, MediaID:4, DataID:0, WebID:0, DrawType:0,
+       Color:[ 9., 88., 167., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       6.0866576433181763e-01, 1.7970660328865051e-01,
+       1.6231083869934082e-01, 2.4572128057479858e-01 ] } ] }
+   - { Id:42, Name:AOI 42, MediaID:4, DataID:0, WebID:0, DrawType:0,
+       Color:[ 62., 97., 114., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       6.0866576433181763e-01, 4.4865524768829346e-01,
+       1.6643738746643066e-01, 2.4694377183914185e-01 ] } ] }
+   - { Id:43, Name:AOI 43, MediaID:4, DataID:0, WebID:0, DrawType:0,
+       Color:[ 0., 149., 9., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       2.2008253633975983e-01, 7.9951101541519165e-01,
+       1.3067398965358734e-01, 2.0048898458480835e-01 ] } ] }
+   - { Id:44, Name:AOI 44, MediaID:4, DataID:0, WebID:0, DrawType:0,
+       Color:[ 185., 106., 158., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 3.5832187533378601e-01, 8.0195599794387817e-01,
+       1.3411277532577515e-01, 2.2127139568328857e-01 ] } ] }
+   - { Id:45, Name:AOI 45, MediaID:4, DataID:0, WebID:0, DrawType:0,
+       Color:[ 114., 255., 255., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 5.0412654876708984e-01, 8.0317848920822144e-01,
+       1.3411277532577515e-01, 2.0782399177551270e-01 ] } ] }
+   - { Id:46, Name:AOI 46, MediaID:4, DataID:0, WebID:0, DrawType:0,
+       Color:[ 202., 246., 167., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 6.4786797761917114e-01, 7.8239607810974121e-01,
+       1.3273727893829346e-01, 2.1760392189025879e-01 ] } ] }
+   - { Id:47, Name:AOI 47, MediaID:5, DataID:0, WebID:0, DrawType:0,
+       Color:[ 185., 176., 149., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 0., 0., 1., 8.0684594810009003e-02 ] } ] }
+   - { Id:48, Name:AOI 48, MediaID:5, DataID:0, WebID:0, DrawType:0,
+       Color:[ 9., 176., 176., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       6.5217390656471252e-02, 9.4132028520107269e-02,
+       7.4565219879150391e-01, 7.7017121016979218e-02 ] } ] }
+   - { Id:49, Name:AOI 49, MediaID:5, DataID:0, WebID:0, DrawType:0,
+       Color:[ 79., 0., 44., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       7.6086953282356262e-02, 2.1149143576622009e-01,
+       4.2173916101455688e-01, 6.1124712228775024e-02 ] } ] }
+   - { Id:50, Name:AOI 50, MediaID:5, DataID:0, WebID:0, DrawType:0,
+       Color:[ 255., 202., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       7.6086953282356262e-02, 2.8973105549812317e-01,
+       6.8260872364044189e-01, 6.1124682426452637e-02 ] } ] }
+   - { Id:51, Name:AOI 51, MediaID:5, DataID:0, WebID:0, DrawType:0,
+       Color:[ 0., 35., 79., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       7.8260868787765503e-02, 3.4596577286720276e-01,
+       5.0217390060424805e-01, 3.2029339671134949e-01 ] } ] }
+   - { Id:52, Name:AOI 52, MediaID:5, DataID:0, WebID:0, DrawType:0,
+       Color:[ 167., 185., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       7.3913045227527618e-02, 6.8215161561965942e-01,
+       7.3913043737411499e-01, 6.1124682426452637e-02 ] } ] }
+   - { Id:53, Name:AOI 53, MediaID:5, DataID:0, WebID:0, DrawType:0,
+       Color:[ 53., 0., 158., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       8.0434784293174744e-02, 7.2616136074066162e-01,
+       8.4565216302871704e-01, 2.0904648303985596e-01 ] } ] }
+   - { Id:54, Name:AOI 54, MediaID:5, DataID:0, WebID:0, DrawType:0,
+       Color:[ 176., 123., 79., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 0., 9.3520778417587280e-01, 1., 6.4792215824127197e-02 ] } ] }
+   - { Id:55, Name:AOI 55, MediaID:5, DataID:0, WebID:0, DrawType:0,
+       Color:[ 193., 70., 26., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       5.7391303777694702e-01, 3.4596577286720276e-01,
+       3.4565216302871704e-01, 2.5061121582984924e-01 ] } ] }
+   - { Id:56, Name:AOI 56, MediaID:6, DataID:0, WebID:0, DrawType:0,
+       Color:[ 0., 211., 88., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       2.0563961565494537e-01, 1.3447437435388565e-02,
+       5.8665752410888672e-01, 1.4914424717426300e-01 ] } ] }
+   - { Id:57, Name:AOI 57, MediaID:6, DataID:0, WebID:0, DrawType:0,
+       Color:[ 53., 149., 114., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 4.1265473701059818e-03, 9.1687038540840149e-02,
+       3.4387893974781036e-02, 1.9804401695728302e-01 ] } ] }
+   - { Id:58, Name:AOI 58, MediaID:6, DataID:0, WebID:0, DrawType:0,
+       Color:[ 53., 167., 229., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 2.0495185256004333e-01, 1.9926650822162628e-01,
+       3.8858321309089661e-01, 3.9608800411224365e-01 ] } ] }
+   - { Id:59, Name:AOI 59, MediaID:6, DataID:0, WebID:0, DrawType:0,
+       Color:[ 149., 141., 246., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 2.0288857817649841e-01, 6.1613690853118896e-01,
+       3.6382392048835754e-01, 1.0880196094512939e-01 ] } ] }
+   - { Id:60, Name:AOI 60, MediaID:6, DataID:0, WebID:0, DrawType:0,
+       Color:[ 141., 18., 106., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 2.0563961565494537e-01, 8.5574573278427124e-01,
+       3.8720774650573730e-01, 6.1124682426452637e-02 ] } ] }
+   - { Id:61, Name:AOI 61, MediaID:6, DataID:0, WebID:0, DrawType:0,
+       Color:[ 193., 97., 229., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 6.1691886186599731e-01, 2.2371637821197510e-01,
+       1.6024756431579590e-01, 5.6723713874816895e-01 ] } ] }
+   - { Id:62, Name:AOI 62, MediaID:6, DataID:0, WebID:0, DrawType:0,
+       Color:[ 255., 211., 237., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 2.4484181404113770e-01, 9.1075795888900757e-01,
+       5.0550204515457153e-01, 8.9242041110992432e-02 ] } ] }
+   - { Id:63, Name:AOI 63, MediaID:6, DataID:0, WebID:0, DrawType:0,
+       Color:[ 158., 255., 158., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 6.1623102426528931e-01, 8.4107583761215210e-01,
+       1.5337008237838745e-01, 7.3349595069885254e-02 ] } ] }
+   - { Id:64, Name:AOI 64, MediaID:7, DataID:0, WebID:0, DrawType:0,
+       Color:[ 255., 0., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       9.5598347485065460e-02, 0., 8.0742782354354858e-01,
+       1.3325183093547821e-01 ] } ] }
+   - { Id:65, Name:AOI 65, MediaID:7, DataID:0, WebID:0, DrawType:0,
+       Color:[ 0., 0., 255., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       1.3686382770538330e-01, 1.4058679342269897e-01,
+       3.5900962352752686e-01, 4.1931539773941040e-01 ] } ] }
+   - { Id:66, Name:AOI 66, MediaID:7, DataID:0, WebID:0, DrawType:0,
+       Color:[ 0., 255., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       5.0343877077102661e-01, 1.4180928468704224e-01,
+       1.7675381898880005e-01, 2.0171150565147400e-01 ] } ] }
+   - { Id:67, Name:AOI 67, MediaID:7, DataID:0, WebID:0, DrawType:0,
+       Color:[ 44., 0., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       5.0275105237960815e-01, 3.5819071531295776e-01,
+       1.7606598138809204e-01, 2.0048898458480835e-01 ] } ] }
+   - { Id:68, Name:AOI 68, MediaID:7, DataID:0, WebID:0, DrawType:0,
+       Color:[ 185., 26., 255., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 6.8707013130187988e-01, 1.4669926464557648e-01,
+       1.7469054460525513e-01, 6.1369192600250244e-01 ] } ] }
+   - { Id:69, Name:AOI 69, MediaID:7, DataID:0, WebID:0, DrawType:0,
+       Color:[ 0., 211., 255., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       2.1939477324485779e-01, 7.8850853443145752e-01,
+       5.5639612674713135e-01, 2.1149146556854248e-01 ] } ] }
+   - { Id:70, Name:AOI 70, MediaID:7, DataID:0, WebID:0, DrawType:0,
+       Color:[ 0., 88., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       1.3617606461048126e-01, 5.7090467214584351e-01,
+       1.7744155228137970e-01, 1.9437652826309204e-01 ] } ] }
+   - { Id:71, Name:AOI 71, MediaID:7, DataID:0, WebID:0, DrawType:0,
+       Color:[ 255., 132., 132., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 3.1911966204643250e-01, 5.7090467214584351e-01,
+       1.7537826299667358e-01, 1.9315403699874878e-01 ] } ] }
+   - { Id:72, Name:AOI 72, MediaID:7, DataID:0, WebID:0, DrawType:0,
+       Color:[ 70., 79., 158., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       5.0275105237960815e-01, 5.7212716341018677e-01,
+       1.7606598138809204e-01, 1.9193154573440552e-01 ] } ] }
+   - { Id:79, Name:AOI 79, MediaID:8, DataID:0, WebID:0, DrawType:0,
+       Color:[ 106., 26., 123., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 9.0784043073654175e-02, 0., 8.0949103832244873e-01,
+       1.3202933967113495e-01 ] } ] }
+   - { Id:80, Name:AOI 80, MediaID:8, DataID:0, WebID:0, DrawType:0,
+       Color:[ 97., 18., 246., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       1.3617606461048126e-01, 2.0415647327899933e-01,
+       3.5763412714004517e-01, 4.1198045015335083e-01 ] } ] }
+   - { Id:81, Name:AOI 81, MediaID:8, DataID:0, WebID:0, DrawType:0,
+       Color:[ 132., 193., 255., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 5.0275105237960815e-01, 2.0048899948596954e-01,
+       1.7400270700454712e-01, 2.0537896454334259e-01 ] } ] }
+   - { Id:82, Name:AOI 82, MediaID:8, DataID:0, WebID:0, DrawType:0,
+       Color:[ 9., 35., 35., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       5.0618982315063477e-01, 4.2053788900375366e-01,
+       1.7331498861312866e-01, 1.9804400205612183e-01 ] } ] }
+   - { Id:83, Name:AOI 83, MediaID:8, DataID:0, WebID:0, DrawType:0,
+       Color:[ 123., 167., 141., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 1.3686382770538330e-01, 6.8948656320571899e-01,
+       1.7469051480293274e-01, 1.9804400205612183e-01 ] } ] }
+   - { Id:84, Name:AOI 84, MediaID:8, DataID:0, WebID:0, DrawType:0,
+       Color:[ 9., 132., 246., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       3.2255846261978149e-01, 6.9315403699874878e-01,
+       3.5213202238082886e-01, 7.2127163410186768e-02 ] } ] }
+   - { Id:85, Name:AOI 85, MediaID:8, DataID:0, WebID:0, DrawType:0,
+       Color:[ 0., 114., 132., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       6.8707013130187988e-01, 1.7726162075996399e-01,
+       1.7537826299667358e-01, 2.6039120554924011e-01 ] } ] }
+   - { Id:86, Name:AOI 86, MediaID:8, DataID:0, WebID:0, DrawType:0,
+       Color:[ 255., 246., 114., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 6.8775790929794312e-01, 4.5354524254798889e-01,
+       1.7469048500061035e-01, 4.3765279650688171e-01 ] } ] }
+   - { Id:87, Name:AOI 87, MediaID:8, DataID:0, WebID:0, DrawType:0,
+       Color:[ 255., 193., 158., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 1.4649243652820587e-01, 4.5599022507667542e-01,
+       2.9229712486267090e-01, 1.1246940493583679e-01 ] } ] }
+   - { Id:88, Name:AOI 88, MediaID:9, DataID:0, WebID:0, DrawType:0,
+       Color:[ 123., 97., 114., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 1.6231086850166321e-01, 6.2347188591957092e-02,
+       3.3768913149833679e-01, 3.5941320657730103e-01 ] } ] }
+   - { Id:89, Name:AOI 89, MediaID:9, DataID:0, WebID:0, DrawType:0,
+       Color:[ 0., 0., 158., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       4.9793672561645508e-01, 6.4792178571224213e-02,
+       3.3700138330459595e-01, 3.6063569784164429e-01 ] } ] }
+   - { Id:90, Name:AOI 90, MediaID:9, DataID:0, WebID:0, DrawType:0,
+       Color:[ 255., 79., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       1.6231086850166321e-01, 4.2542788386344910e-01,
+       1.6574966907501221e-01, 2.0293399691581726e-01 ] } ] }
+   - { Id:91, Name:AOI 91, MediaID:9, DataID:0, WebID:0, DrawType:0,
+       Color:[ 149., 70., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       3.2943603396415710e-01, 4.2542788386344910e-01,
+       1.6918843984603882e-01, 2.0660147070884705e-01 ] } ] }
+   - { Id:92, Name:AOI 92, MediaID:9, DataID:0, WebID:0, DrawType:0,
+       Color:[ 0., 255., 211., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       4.9862447381019592e-01, 4.2420539259910583e-01,
+       1.6712519526481628e-01, 2.0415648818016052e-01 ] } ] }
+   - { Id:93, Name:AOI 93, MediaID:9, DataID:0, WebID:0, DrawType:0,
+       Color:[ 211., 79., 185., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 6.6712516546249390e-01, 4.2420539259910583e-01,
+       1.6850072145462036e-01, 2.0171150565147400e-01 ] } ] }
+   - { Id:94, Name:AOI 94, MediaID:9, DataID:0, WebID:0, DrawType:0,
+       Color:[ 26., 0., 62., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       2.1870701014995575e-01, 6.4425426721572876e-01,
+       5.5708390474319458e-01, 2.6039123535156250e-01 ] } ] }
+   - { Id:95, Name:AOI 95, MediaID:9, DataID:0, WebID:0, DrawType:0,
+       Color:[ 176., 255., 237., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 1.3411279022693634e-01, 0., 7.2696012258529663e-01,
+       4.4009778648614883e-02 ] } ] }
+   - { Id:96, Name:AOI 0, MediaID:0, DataID:1, WebID:0, DrawType:0,
+       Color:[ 255., 0., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       1.7537826299667358e-01, 2.4449878931045532e-01,
+       2.6891332864761353e-01, 3.3618587255477905e-01 ] } ] }
+   - { Id:97, Name:AOI 1, MediaID:0, DataID:1, WebID:0, DrawType:0,
+       Color:[ 0., 0., 255., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       4.7867947816848755e-01, 2.4449875950813293e-01,
+       1.4167815446853638e-01, 2.0293396711349487e-01 ] } ] }
+   - { Id:98, Name:AOI 2, MediaID:0, DataID:1, WebID:0, DrawType:0,
+       Color:[ 0., 255., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       6.8363136053085327e-01, 2.4327628314495087e-01,
+       1.4099037647247314e-01, 2.0171152055263519e-01 ] } ] }
+   - { Id:99, Name:AOI 3, MediaID:0, DataID:1, WebID:0, DrawType:0,
+       Color:[ 44., 0., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       4.7799175977706909e-01, 5.3667479753494263e-01,
+       1.4442914724349976e-01, 2.0782399177551270e-01 ] } ] }
+   - { Id:100, Name:AOI 4, MediaID:0, DataID:1, WebID:0, DrawType:0,
+       Color:[ 185., 26., 255., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 6.8156808614730835e-01, 5.2567231655120850e-01,
+       1.4718019962310791e-01, 2.1760392189025879e-01 ] } ] }
+   - { Id:101, Name:AOI 5, MediaID:0, DataID:1, WebID:0, DrawType:0,
+       Color:[ 0., 211., 255., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       0., 0., 9.9724894762039185e-01, 1.0880195349454880e-01 ] } ] }
+   - { Id:102, Name:AOI 6, MediaID:0, DataID:1, WebID:0, DrawType:0,
+       Color:[ 0., 88., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       0., 9.2053788900375366e-01, 1., 7.9462110996246338e-02 ] } ] }
+   - { Id:103, Name:AOI 7, MediaID:0, DataID:1, WebID:0, DrawType:0,
+       Color:[ 255., 132., 132., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 4.7661623358726501e-01, 4.4376528263092041e-01,
+       1.4236590266227722e-01, 6.1124712228775024e-02 ] } ] }
+   - { Id:104, Name:AOI 8, MediaID:0, DataID:1, WebID:0, DrawType:0,
+       Color:[ 70., 79., 158., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       4.7524070739746094e-01, 7.4816626310348511e-01,
+       1.2998622655868530e-01, 6.1124682426452637e-02 ] } ] }
+   - { Id:105, Name:AOI 9, MediaID:0, DataID:1, WebID:0, DrawType:0,
+       Color:[ 193., 255., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       6.8363136053085327e-01, 4.4009780883789062e-01,
+       1.2310868501663208e-01, 6.1124682426452637e-02 ] } ] }
+   - { Id:106, Name:AOI 10, MediaID:0, DataID:1, WebID:0, DrawType:0,
+       Color:[ 149., 132., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       6.8431913852691650e-01, 7.4449878931045532e-01,
+       1.3273727893829346e-01, 6.1124682426452637e-02 ] } ] }
+   - { Id:107, Name:AOI 11, MediaID:0, DataID:1, WebID:0, DrawType:0,
+       Color:[ 123., 0., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       1.7331498861312866e-01, 5.8679699897766113e-01,
+       2.7647867798805237e-01, 9.5354557037353516e-02 ] } ] }
+   - { Id:108, Name:AOI 12, MediaID:1, DataID:1, WebID:0, DrawType:0,
+       Color:[ 255., 18., 211., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 3.2608695328235626e-02, 1.5892419964075089e-02,
+       9.3695652484893799e-01, 9.7799509763717651e-02 ] } ] }
+   - { Id:109, Name:AOI 13, MediaID:1, DataID:1, WebID:0, DrawType:0,
+       Color:[ 106., 26., 123., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 0., 2.7261614799499512e-01, 1., 3.6063569784164429e-01 ] } ] }
+   - { Id:110, Name:AOI 16, MediaID:1, DataID:1, WebID:0, DrawType:0,
+       Color:[ 97., 18., 246., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       0., 6.4425426721572876e-01, 1., 1.0268950462341309e-01 ] } ] }
+   - { Id:111, Name:AOI 17, MediaID:1, DataID:1, WebID:0, DrawType:0,
+       Color:[ 132., 193., 255., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 6.5217390656471252e-03, 7.7506113052368164e-01,
+       9.4782608747482300e-01, 8.6797058582305908e-02 ] } ] }
+   - { Id:112, Name:AOI 18, MediaID:1, DataID:1, WebID:0, DrawType:0,
+       Color:[ 9., 35., 35., 0. ], AOIRect:[] }
+   - { Id:113, Name:AOI 19, MediaID:1, DataID:1, WebID:0, DrawType:0,
+       Color:[ 123., 167., 141., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 0., 1.2469437718391418e-01, 1., 1.3569682836532593e-01 ] } ] }
+   - { Id:114, Name:AOI 20, MediaID:2, DataID:1, WebID:0, DrawType:0,
+       Color:[ 9., 132., 246., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       5.9078407287597656e-01, 1.3202933967113495e-01,
+       1.5955978631973267e-01, 2.3960880935192108e-01 ] } ] }
+   - { Id:115, Name:AOI 21, MediaID:2, DataID:1, WebID:0, DrawType:0,
+       Color:[ 0., 114., 132., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       5.9284734725952148e-01, 3.8875305652618408e-01,
+       1.5818428993225098e-01, 2.2982883453369141e-01 ] } ] }
+   - { Id:116, Name:AOI 22, MediaID:2, DataID:1, WebID:0, DrawType:0,
+       Color:[ 255., 246., 114., 0. ], AOIRect:[ { Start:10., Type:1,
+       Rect:[ 5.8872079849243164e-01, 6.2836188077926636e-01,
+       1.6231083869934082e-01, 3.7163811922073364e-01 ] } ] }
+   - { Id:117, Name:AOI 23, MediaID:2, DataID:1, WebID:0, DrawType:0,
+       Color:[ 255., 193., 158., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 2.4759285151958466e-01, 1.2224939418956637e-03,
+       5.0275099277496338e-01, 1.2102689594030380e-01 ] } ] }
+   - { Id:118, Name:AOI 24, MediaID:2, DataID:1, WebID:0, DrawType:0,
+       Color:[ 123., 97., 114., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 2.4415405094623566e-01, 1.4425428211688995e-01,
+       6.3273742794990540e-02, 6.1124697327613831e-02 ] } ] }
+   - { Id:119, Name:AOI 25, MediaID:2, DataID:1, WebID:0, DrawType:0,
+       Color:[ 0., 0., 158., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       2.4484181404113770e-01, 2.5061124563217163e-01,
+       1.0866576433181763e-01, 1.1735939979553223e-01 ] } ] }
+   - { Id:120, Name:AOI 26, MediaID:2, DataID:1, WebID:0, DrawType:0,
+       Color:[ 255., 79., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       2.4415405094623566e-01, 4.6821516752243042e-01,
+       1.0797800123691559e-01, 1.1491441726684570e-01 ] } ] }
+   - { Id:121, Name:AOI 27, MediaID:2, DataID:1, WebID:0, DrawType:0,
+       Color:[ 149., 70., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       2.4209079146385193e-01, 7.2249388694763184e-01,
+       1.1004126071929932e-01, 1.2102687358856201e-01 ] } ] }
+   - { Id:122, Name:AOI 28, MediaID:2, DataID:1, WebID:0, DrawType:0,
+       Color:[ 0., 255., 211., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       2.4690508842468262e-01, 9.3887531757354736e-01,
+       1.0110041499137878e-01, 6.1124682426452637e-02 ] } ] }
+   - { Id:123, Name:AOI 29, MediaID:2, DataID:1, WebID:0, DrawType:0,
+       Color:[ 211., 79., 185., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 3.5625860095024109e-01, 2.4938875436782837e-01,
+       2.2558459639549255e-01, 1.7848411202430725e-01 ] } ] }
+   - { Id:124, Name:AOI 30, MediaID:2, DataID:1, WebID:0, DrawType:0,
+       Color:[ 26., 0., 62., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       3.5557085275650024e-01, 4.6699267625808716e-01,
+       2.2420907020568848e-01, 2.2493886947631836e-01 ] } ] }
+   - { Id:125, Name:AOI 31, MediaID:2, DataID:1, WebID:0, DrawType:0,
+       Color:[ 176., 255., 237., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 3.5625860095024109e-01, 7.2004890441894531e-01,
+       2.2627237439155579e-01, 1.7726159095764160e-01 ] } ] }
+   - { Id:126, Name:AOI 32, MediaID:2, DataID:1, WebID:0, DrawType:0,
+       Color:[ 97., 123., 255., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 3.5625860095024109e-01, 9.4009780883789062e-01,
+       2.2145804762840271e-01, 5.9902191162109375e-02 ] } ] }
+   - { Id:127, Name:AOI 33, MediaID:3, DataID:1, WebID:0, DrawType:0,
+       Color:[ 123., 255., 70., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 9.3478262424468994e-02, 0., 8.1304347515106201e-01,
+       3.8019558787345886e-01 ] } ] }
+   - { Id:128, Name:AOI 34, MediaID:3, DataID:1, WebID:0, DrawType:0,
+       Color:[ 97., 167., 18., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       0., 3.7652811408042908e-01, 1., 8.6797058582305908e-02 ] } ] }
+   - { Id:129, Name:AOI 35, MediaID:3, DataID:1, WebID:0, DrawType:0,
+       Color:[ 167., 167., 211., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 1.9565217196941376e-02, 5.0000000000000000e-01,
+       9.6304345130920410e-01, 3.0684596300125122e-01 ] } ] }
+   - { Id:130, Name:AOI 36, MediaID:3, DataID:1, WebID:0, DrawType:0,
+       Color:[ 132., 79., 211., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 2.6086956262588501e-02, 8.2396090030670166e-01,
+       9.5217394828796387e-01, 1.7603909969329834e-01 ] } ] }
+   - { Id:131, Name:AOI 37, MediaID:4, DataID:1, WebID:0, DrawType:0,
+       Color:[ 193., 0., 106., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       3.0674001574516296e-01, 4.8899757675826550e-03,
+       3.8651993870735168e-01, 9.2909537255764008e-02 ] } ] }
+   - { Id:132, Name:AOI 38, MediaID:4, DataID:1, WebID:0, DrawType:0,
+       Color:[ 70., 97., 44., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       1.9601100683212280e-01, 9.4132021069526672e-02,
+       6.1279225349426270e-01, 6.1124697327613831e-02 ] } ] }
+   - { Id:133, Name:AOI 39, MediaID:4, DataID:1, WebID:0, DrawType:0,
+       Color:[ 246., 149., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       2.1733149886131287e-01, 2.1026894450187683e-01,
+       3.6795046925544739e-01, 4.3031784892082214e-01 ] } ] }
+   - { Id:134, Name:AOI 40, MediaID:4, DataID:1, WebID:0, DrawType:0,
+       Color:[ 79., 62., 9., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       2.2352132201194763e-01, 6.4425426721572876e-01,
+       3.5625860095024109e-01, 1.4180928468704224e-01 ] } ] }
+   - { Id:135, Name:AOI 41, MediaID:4, DataID:1, WebID:0, DrawType:0,
+       Color:[ 9., 88., 167., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       6.0866576433181763e-01, 1.7970660328865051e-01,
+       1.6231083869934082e-01, 2.4572128057479858e-01 ] } ] }
+   - { Id:136, Name:AOI 42, MediaID:4, DataID:1, WebID:0, DrawType:0,
+       Color:[ 62., 97., 114., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       6.0866576433181763e-01, 4.4865524768829346e-01,
+       1.6643738746643066e-01, 2.4694377183914185e-01 ] } ] }
+   - { Id:137, Name:AOI 43, MediaID:4, DataID:1, WebID:0, DrawType:0,
+       Color:[ 0., 149., 9., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       2.2008253633975983e-01, 7.9951101541519165e-01,
+       1.3067398965358734e-01, 2.0048898458480835e-01 ] } ] }
+   - { Id:138, Name:AOI 44, MediaID:4, DataID:1, WebID:0, DrawType:0,
+       Color:[ 185., 106., 158., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 3.5832187533378601e-01, 8.0195599794387817e-01,
+       1.3411277532577515e-01, 2.2127139568328857e-01 ] } ] }
+   - { Id:139, Name:AOI 45, MediaID:4, DataID:1, WebID:0, DrawType:0,
+       Color:[ 114., 255., 255., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 5.0412654876708984e-01, 8.0317848920822144e-01,
+       1.3411277532577515e-01, 2.0782399177551270e-01 ] } ] }
+   - { Id:140, Name:AOI 46, MediaID:4, DataID:1, WebID:0, DrawType:0,
+       Color:[ 202., 246., 167., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 6.4786797761917114e-01, 7.8239607810974121e-01,
+       1.3273727893829346e-01, 2.1760392189025879e-01 ] } ] }
+   - { Id:141, Name:AOI 47, MediaID:5, DataID:1, WebID:0, DrawType:0,
+       Color:[ 185., 176., 149., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 0., 0., 1., 8.0684594810009003e-02 ] } ] }
+   - { Id:142, Name:AOI 48, MediaID:5, DataID:1, WebID:0, DrawType:0,
+       Color:[ 9., 176., 176., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       6.5217390656471252e-02, 9.4132028520107269e-02,
+       7.4565219879150391e-01, 7.7017121016979218e-02 ] } ] }
+   - { Id:143, Name:AOI 49, MediaID:5, DataID:1, WebID:0, DrawType:0,
+       Color:[ 79., 0., 44., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       7.6086953282356262e-02, 2.1149143576622009e-01,
+       4.2173916101455688e-01, 6.1124712228775024e-02 ] } ] }
+   - { Id:144, Name:AOI 50, MediaID:5, DataID:1, WebID:0, DrawType:0,
+       Color:[ 255., 202., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       7.6086953282356262e-02, 2.8973105549812317e-01,
+       6.8260872364044189e-01, 6.1124682426452637e-02 ] } ] }
+   - { Id:145, Name:AOI 51, MediaID:5, DataID:1, WebID:0, DrawType:0,
+       Color:[ 0., 35., 79., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       7.8260868787765503e-02, 3.4596577286720276e-01,
+       5.0217390060424805e-01, 3.2029339671134949e-01 ] } ] }
+   - { Id:146, Name:AOI 52, MediaID:5, DataID:1, WebID:0, DrawType:0,
+       Color:[ 167., 185., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       7.3913045227527618e-02, 6.8215161561965942e-01,
+       7.3913043737411499e-01, 6.1124682426452637e-02 ] } ] }
+   - { Id:147, Name:AOI 53, MediaID:5, DataID:1, WebID:0, DrawType:0,
+       Color:[ 53., 0., 158., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       8.0434784293174744e-02, 7.2616136074066162e-01,
+       8.4565216302871704e-01, 2.0904648303985596e-01 ] } ] }
+   - { Id:148, Name:AOI 54, MediaID:5, DataID:1, WebID:0, DrawType:0,
+       Color:[ 176., 123., 79., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 0., 9.3520778417587280e-01, 1., 6.4792215824127197e-02 ] } ] }
+   - { Id:149, Name:AOI 55, MediaID:5, DataID:1, WebID:0, DrawType:0,
+       Color:[ 193., 70., 26., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       5.7391303777694702e-01, 3.4596577286720276e-01,
+       3.4565216302871704e-01, 2.5061121582984924e-01 ] } ] }
+   - { Id:150, Name:AOI 56, MediaID:6, DataID:1, WebID:0, DrawType:0,
+       Color:[ 0., 211., 88., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       2.0563961565494537e-01, 1.3447437435388565e-02,
+       5.8665752410888672e-01, 1.4914424717426300e-01 ] } ] }
+   - { Id:151, Name:AOI 57, MediaID:6, DataID:1, WebID:0, DrawType:0,
+       Color:[ 53., 149., 114., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 4.1265473701059818e-03, 9.1687038540840149e-02,
+       3.4387893974781036e-02, 1.9804401695728302e-01 ] } ] }
+   - { Id:152, Name:AOI 58, MediaID:6, DataID:1, WebID:0, DrawType:0,
+       Color:[ 53., 167., 229., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 2.0495185256004333e-01, 1.9926650822162628e-01,
+       3.8858321309089661e-01, 3.9608800411224365e-01 ] } ] }
+   - { Id:153, Name:AOI 59, MediaID:6, DataID:1, WebID:0, DrawType:0,
+       Color:[ 149., 141., 246., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 2.0288857817649841e-01, 6.1613690853118896e-01,
+       3.6382392048835754e-01, 1.0880196094512939e-01 ] } ] }
+   - { Id:154, Name:AOI 60, MediaID:6, DataID:1, WebID:0, DrawType:0,
+       Color:[ 141., 18., 106., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 2.0563961565494537e-01, 8.5574573278427124e-01,
+       3.8720774650573730e-01, 6.1124682426452637e-02 ] } ] }
+   - { Id:155, Name:AOI 61, MediaID:6, DataID:1, WebID:0, DrawType:0,
+       Color:[ 193., 97., 229., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 6.1691886186599731e-01, 2.2371637821197510e-01,
+       1.6024756431579590e-01, 5.6723713874816895e-01 ] } ] }
+   - { Id:156, Name:AOI 62, MediaID:6, DataID:1, WebID:0, DrawType:0,
+       Color:[ 255., 211., 237., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 2.4484181404113770e-01, 9.1075795888900757e-01,
+       5.0550204515457153e-01, 8.9242041110992432e-02 ] } ] }
+   - { Id:157, Name:AOI 63, MediaID:6, DataID:1, WebID:0, DrawType:0,
+       Color:[ 158., 255., 158., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 6.1623102426528931e-01, 8.4107583761215210e-01,
+       1.5337008237838745e-01, 7.3349595069885254e-02 ] } ] }
+   - { Id:158, Name:AOI 64, MediaID:7, DataID:1, WebID:0, DrawType:0,
+       Color:[ 255., 0., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       9.5598347485065460e-02, 0., 8.0742782354354858e-01,
+       1.3325183093547821e-01 ] } ] }
+   - { Id:159, Name:AOI 65, MediaID:7, DataID:1, WebID:0, DrawType:0,
+       Color:[ 0., 0., 255., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       1.3686382770538330e-01, 1.4058679342269897e-01,
+       3.5900962352752686e-01, 4.1931539773941040e-01 ] } ] }
+   - { Id:160, Name:AOI 66, MediaID:7, DataID:1, WebID:0, DrawType:0,
+       Color:[ 0., 255., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       5.0343877077102661e-01, 1.4180928468704224e-01,
+       1.7675381898880005e-01, 2.0171150565147400e-01 ] } ] }
+   - { Id:161, Name:AOI 67, MediaID:7, DataID:1, WebID:0, DrawType:0,
+       Color:[ 44., 0., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       5.0275105237960815e-01, 3.5819071531295776e-01,
+       1.7606598138809204e-01, 2.0048898458480835e-01 ] } ] }
+   - { Id:162, Name:AOI 68, MediaID:7, DataID:1, WebID:0, DrawType:0,
+       Color:[ 185., 26., 255., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 6.8707013130187988e-01, 1.4669926464557648e-01,
+       1.7469054460525513e-01, 6.1369192600250244e-01 ] } ] }
+   - { Id:163, Name:AOI 69, MediaID:7, DataID:1, WebID:0, DrawType:0,
+       Color:[ 0., 211., 255., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       2.1939477324485779e-01, 7.8850853443145752e-01,
+       5.5639612674713135e-01, 2.1149146556854248e-01 ] } ] }
+   - { Id:164, Name:AOI 70, MediaID:7, DataID:1, WebID:0, DrawType:0,
+       Color:[ 0., 88., 0., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       1.3617606461048126e-01, 5.7090467214584351e-01,
+       1.7744155228137970e-01, 1.9437652826309204e-01 ] } ] }
+   - { Id:165, Name:AOI 71, MediaID:7, DataID:1, WebID:0, DrawType:0,
+       Color:[ 255., 132., 132., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 3.1911966204643250e-01, 5.7090467214584351e-01,
+       1.7537826299667358e-01, 1.9315403699874878e-01 ] } ] }
+   - { Id:166, Name:AOI 72, MediaID:7, DataID:1, WebID:0, DrawType:0,
+       Color:[ 70., 79., 158., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       5.0275105237960815e-01, 5.7212716341018677e-01,
+       1.7606598138809204e-01, 1.9193154573440552e-01 ] } ] }
+   - { Id:167, Name:AOI 79, MediaID:8, DataID:1, WebID:0, DrawType:0,
+       Color:[ 106., 26., 123., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 9.0784043073654175e-02, 0., 8.0949103832244873e-01,
+       1.3202933967113495e-01 ] } ] }
+   - { Id:168, Name:AOI 80, MediaID:8, DataID:1, WebID:0, DrawType:0,
+       Color:[ 97., 18., 246., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       1.3617606461048126e-01, 2.0415647327899933e-01,
+       3.5763412714004517e-01, 4.1198045015335083e-01 ] } ] }
+   - { Id:169, Name:AOI 81, MediaID:8, DataID:1, WebID:0, DrawType:0,
+       Color:[ 132., 193., 255., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 5.0275105237960815e-01, 2.0048899948596954e-01,
+       1.7400270700454712e-01, 2.0537896454334259e-01 ] } ] }
+   - { Id:170, Name:AOI 82, MediaID:8, DataID:1, WebID:0, DrawType:0,
+       Color:[ 9., 35., 35., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       5.0618982315063477e-01, 4.2053788900375366e-01,
+       1.7331498861312866e-01, 1.9804400205612183e-01 ] } ] }
+   - { Id:171, Name:AOI 83, MediaID:8, DataID:1, WebID:0, DrawType:0,
+       Color:[ 123., 167., 141., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 1.3686382770538330e-01, 6.8948656320571899e-01,
+       1.7469051480293274e-01, 1.9804400205612183e-01 ] } ] }
+   - { Id:172, Name:AOI 84, MediaID:8, DataID:1, WebID:0, DrawType:0,
+       Color:[ 9., 132., 246., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       3.2255846261978149e-01, 6.9315403699874878e-01,
+       3.5213202238082886e-01, 7.2127163410186768e-02 ] } ] }
+   - { Id:173, Name:AOI 85, MediaID:8, DataID:1, WebID:0, DrawType:0,
+       Color:[ 0., 114., 132., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       6.8707013130187988e-01, 1.7726162075996399e-01,
+       1.7537826299667358e-01, 2.6039120554924011e-01 ] } ] }
+   - { Id:174, Name:AOI 86, MediaID:8, DataID:1, WebID:0, DrawType:0,
+       Color:[ 255., 246., 114., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 6.8775790929794312e-01, 4.5354524254798889e-01,
+       1.7469048500061035e-01, 4.3765279650688171e-01 ] } ] }
+   - { Id:175, Name:AOI 87, MediaID:8, DataID:1, WebID:0, DrawType:0,
+       Color:[ 255., 193., 158., 0. ], AOIRect:[ { Start:0., Type:1,
+       Rect:[ 1.4649243652820587e-01, 4.5599022507667542e-01,
+       2.9229712486267090e-01, 1.1246940493583679e-01 ] } ] }
+   - { Id:184, Name:AOI 184, MediaID:6, DataID:0, WebID:0, DrawType:0,
+       Color:[ 0., 211., 88., 0. ], AOIRect:[ { Start:0., Type:1, Rect:[
+       2.0495185256004333e-01, 7.2982883453369141e-01,
+       1.1485558748245239e-01, 7.9462110996246338e-02 ] } ] }

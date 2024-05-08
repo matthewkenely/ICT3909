@@ -1,0 +1,43 @@
+%YAML:1.0
+---
+FileVersion: 2
+NextUserId: 1
+NextMediaId: 10
+NextAOIId: 0
+NextWebId: 0
+Media:
+   - { Id:0, PlaybackIndex:0, Name:"DESKTOP_A.png", Type:0,
+       Path:"DESKTOP_A.png", Duration:10., Randomize:1, Scale:1,
+       BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:1, PlaybackIndex:1, Name:"ILLUM_14_03_24_A.png", Type:0,
+       Path:"ILLUM_14_03_24_A.png", Duration:10., Randomize:1, Scale:1,
+       BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:2, PlaybackIndex:2, Name:"INDEPENDENT_14_03_24_A.png", Type:0,
+       Path:"INDEPENDENT_14_03_24_A.png", Duration:10., Randomize:1,
+       Scale:1, BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:3, PlaybackIndex:3, Name:"LOVIN_MALTA_04_03_24_A.png", Type:0,
+       Path:"LOVIN_MALTA_04_03_24_A.png", Duration:10., Randomize:1,
+       Scale:1, BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:4, PlaybackIndex:4, Name:"MALTA_TODAY_14_03_24_A.png", Type:0,
+       Path:"MALTA_TODAY_14_03_24_A.png", Duration:10., Randomize:1,
+       Scale:1, BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:5, PlaybackIndex:5, Name:"MOBILE_A.png", Type:0,
+       Path:"MOBILE_A.png", Duration:10., Randomize:1, Scale:1, BK_RED:50,
+       BK_GREEN:50, BK_BLUE:50 }
+   - { Id:6, PlaybackIndex:6, Name:"THE_SHIFT_14_03_24_A.png", Type:0,
+       Path:"THE_SHIFT_14_03_24_A.png", Duration:10., Randomize:1,
+       Scale:1, BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:7, PlaybackIndex:7, Name:"TIMES_OF_MALTA_15_03_24_A.png",
+       Type:0, Path:"TIMES_OF_MALTA_15_03_24_A.png", Duration:10.,
+       Randomize:1, Scale:1, BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:8, PlaybackIndex:8, Name:"TIMES_OF_MALTA_29_02_24_A.jpg",
+       Type:0, Path:"TIMES_OF_MALTA_29_02_24_A.jpg", Duration:10.,
+       Randomize:1, Scale:1, BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+   - { Id:9, PlaybackIndex:9, Name:"TVM_14_03_24_A.png", Type:0,
+       Path:"TVM_14_03_24_A.png", Duration:10., Randomize:1, Scale:1,
+       BK_RED:50, BK_GREEN:50, BK_BLUE:50 }
+UserData:
+   - { Id:0, Name:User 0, Age:0, Gender:M, OffsetX:0., OffsetY:0.,
+       Color:[ 0., 0., 255., 0. ], DataRecords:6129 }
+AOI:
+   []
