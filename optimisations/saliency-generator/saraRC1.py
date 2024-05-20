@@ -85,6 +85,8 @@ def return_saliency(img, generator='itti', deepgaze_model=None, emlnet_models=No
         # Scale pixel values to 0-255 instead of float (approx 0, hence black image)
         # https://stackoverflow.com/questions/48331211/how-to-use-cv2-imshow-correctly-for-the-float-image-returned-by-cv2-distancet/48333272
         saliency_map = cv2.normalize(saliency_map, None, 255, 0, cv2.NORM_MINMAX, cv2.CV_8UC1)
+
+        return saliency_map
     elif generator == 'deepgaze':
         import numpy as np
         from scipy.misc import face
@@ -166,8 +168,8 @@ def return_saliency(img, generator='itti', deepgaze_model=None, emlnet_models=No
     # Normalize saliency map
     saliency_map = cv2.normalize(saliency_map, None, 255, 0, cv2.NORM_MINMAX, cv2.CV_8UC1)
 
-    # saliency_map = cv2.GaussianBlur(saliency_map, (31, 31), 10)
-    # saliency_map = saliency_map // 4
+    saliency_map = cv2.GaussianBlur(saliency_map, (31, 31), 10)
+    saliency_map = saliency_map // 4
 
     return saliency_map
 

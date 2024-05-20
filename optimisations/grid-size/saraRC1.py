@@ -95,7 +95,7 @@ def return_saliency(img, generator='itti'):
         # you can use DeepGazeI or DeepGazeIIE
         model = deepgaze_pytorch.DeepGazeIIE(pretrained=True).to(DEVICE)
 
-        # image = face()
+        mage = face()
         image = img
 
         # load precomputed centerbias log density (from MIT1003) over a 1024x1024 image
