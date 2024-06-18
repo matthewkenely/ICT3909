@@ -79,7 +79,7 @@ Available <a href="./gazedataset">here</a>.
 <br>
 
 <p float="left" align="middle">
-  <img style="; float:left" src="./assets/onliness 2.png">
+  <img style="; float:left" src="./assets/onliness 3.png">
   <br>
   <a href="https://mkenely.com/visualattention" target="_blank">Online experiment</a> used to gather mouse clicks/taps on the interfaces.
 </p>
