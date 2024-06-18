@@ -90,7 +90,10 @@ Available <a href="./gazedataset">here</a>.
 
 <h1>Additional Notes</h1>
 
-The curated gaze location dataset is representative in terms of gender and age:
+There was a discrepancy in terms of gender with 64% of responendes to the online experiment being female, so we carried out statistical tests to show that there weren’t significant differences in where people looked based on their gender alone.
+
+We show that age plays a much more crucial role in influencing where people are likely to look.
+
 <p float="left" align="middle">
   <img style="width: 40%; float:left" src="./assets/Gender Distribution 2.png">
   <img style="width: 40%; float:right" src="./assets/Age Distribution.png">
@@ -99,6 +102,37 @@ The curated gaze location dataset is representative in terms of gender and age:
 <p float="left" align="middle">
   <img style="width: 100%; float:left" src="./assets/stattests.png">
 </p>
+
+<hr>
+
+We subsequently analysed the significant differences in gaze locations based on demographic. The following are a few examples:
+
+<p float="left" align="middle">
+  <img style="width: 100%; float:left" src="./assets/gendertest1.png">
+  <br>
+  <i>The Malta Independent</i> separated by gender. Females were more likely to look at the news article image featuring Miriam Dalli.
+</p>
+
+<br>
+
+<p float="left" align="middle">
+  <img style="width: 100%; float:left" src="./assets/agetest5.png">
+  <br>
+  <i>The Shift</i> separated by age group. Older participants were more likely to look at the article heading rather than the image.
+</p>
+
+
+<hr>
+
+We compiled statistics about the regions of interest (distracting elements) and carried out a questionnaire to show that the experimental group was less distracted by irrelevant content in general:
+<p float="left" align="middle">
+  <img style="width: 100%; float:left" src="./assets/roistats.png">
+</p>
+
+<p float="left" align="middle">
+  <img style="width: 100%; float:left" src="./assets/Q2ALL.png">
+</p>
+
 
 
 
