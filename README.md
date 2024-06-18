@@ -90,15 +90,14 @@ Available <a href="./gazedataset">here</a>.
 
 <h1>Additional Notes</h1>
 
+The curated gaze location dataset is representative in terms of gender and age:
 <p float="left" align="middle">
-  <img style="width: 40%; float:left" src="./assets/Gender Distribution.png">
+  <img style="width: 40%; float:left" src="./assets/Gender Distribution 2.png">
   <img style="width: 40%; float:right" src="./assets/Age Distribution.png">
 </p>
 
 <p float="left" align="middle">
   <img style="width: 100%; float:left" src="./assets/stattests.png">
-  <br>
-  The curated gaze location dataset is representative in terms of gender and age.
 </p>
 
 
