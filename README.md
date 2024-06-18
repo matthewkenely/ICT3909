@@ -58,7 +58,7 @@ The purpose of this study was to address two problems:
 
 <h2>Evaluate SaRa quantitatively</h2>
 <p float="left" align="middle">
-<img style="width: 75%" src="./assets/SOR.png">
+<img style="width: 55%" src="./assets/SOR.png">
 </p>
 
 <pre><a href="https://openaccess.thecvf.com/content_CVPR_2020/html/Siris_Inferring_Attention_Shift_Ranks_of_Objects_for_Image_Saliency_CVPR_2020_paper.html">[1] Siris et al. “Inferring attention shift ranks of objects for image saliency,” in Proceedings of the IEEE/CVF conference on computer vision and pattern recognition, 2020</a></pre>
