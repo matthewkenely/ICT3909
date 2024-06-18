@@ -46,7 +46,7 @@ experiments.
 The purpose of this study was to address two problems:
 <ol>
   <li>The problem of news outlets engaging in constant competition for people’s attention, either through the use of distracting ads or News article images featuring many elements which have been shown to attract attention (e.g. faces).</li>
-  <li>The lack of demographically representative datasets featuring saliency in the context of user interfaces</li>
+  <li>The lack of demographically representative datasets featuring saliency in the context of user interfaces.</li>
 </ol>
 
 
