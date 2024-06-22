@@ -90,7 +90,7 @@ Available <a href="./gazedataset">here</a>.
 
 <h1>Additional Notes</h1>
 
-There was a discrepancy in terms of gender with 64% of responendes to the online experiment being female, so we carried out statistical tests to show that there weren’t significant differences in where people looked based on their gender alone.
+There was a discrepancy in terms of gender with 64% of respondents to the online experiment being female, so we carried out statistical tests to show that there weren’t significant differences in where people looked based on their gender alone.
 
 We show that age plays a much more crucial role in influencing where people are likely to look.
 
