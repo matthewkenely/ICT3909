@@ -72,6 +72,7 @@ Available <a href="./gazedataset">here</a>.
 <p float="left" align="middle">
   <img style="width: 66%; float:left" src="./assets/eyetracking.gif">
   <img style="width: 66%; float:right" src="./assets/eyeheatmap.gif">
+  <br>
   Example of data gathered from the eye-tracking experiment.
 </p>
 
