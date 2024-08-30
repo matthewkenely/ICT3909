@@ -46,7 +46,7 @@ experiments.
 The purpose of this study was to address two problems:
 <ol>
   <li>The problem of news outlets engaging in constant competition for people’s attention, either through the use of distracting ads or News article images featuring many elements which have been shown to attract attention (e.g. faces).</li>
-  <li>The lack of demographically representative datasets featuring saliency in the context of user interfaces</li>
+  <li>The lack of demographically representative datasets featuring saliency in the context of user interfaces.</li>
 </ol>
 
 
@@ -58,7 +58,7 @@ The purpose of this study was to address two problems:
 
 <h2>Evaluate SaRa quantitatively</h2>
 <p float="left" align="middle">
-<img style="width: 75%" src="./assets/SOR.png">
+<img style="width: 55%" src="./assets/SOR.png">
 </p>
 
 <pre><a href="https://openaccess.thecvf.com/content_CVPR_2020/html/Siris_Inferring_Attention_Shift_Ranks_of_Objects_for_Image_Saliency_CVPR_2020_paper.html">[1] Siris et al. “Inferring attention shift ranks of objects for image saliency,” in Proceedings of the IEEE/CVF conference on computer vision and pattern recognition, 2020</a></pre>
@@ -72,6 +72,7 @@ Available <a href="./gazedataset">here</a>.
 <p float="left" align="middle">
   <img style="width: 66%; float:left" src="./assets/eyetracking.gif">
   <img style="width: 66%; float:right" src="./assets/eyeheatmap.gif">
+  <br>
   Example of data gathered from the eye-tracking experiment.
 </p>
 
@@ -90,7 +91,10 @@ Available <a href="./gazedataset">here</a>.
 
 <h1>Additional Notes</h1>
 
-The curated gaze location dataset is representative in terms of gender and age:
+There was a discrepancy in terms of gender with 64% of respondents to the online experiment being female, so we carried out statistical tests to show that there weren’t significant differences in where people looked based on their gender alone.
+
+We show that age plays a much more crucial role in influencing where people are likely to look.
+
 <p float="left" align="middle">
   <img style="width: 40%; float:left" src="./assets/Gender Distribution 2.png">
   <img style="width: 40%; float:right" src="./assets/Age Distribution.png">
@@ -99,6 +103,37 @@ The curated gaze location dataset is representative in terms of gender and age:
 <p float="left" align="middle">
   <img style="width: 100%; float:left" src="./assets/stattests.png">
 </p>
+
+<hr>
+
+We subsequently analysed the significant differences in gaze locations based on demographic. The following are a few examples:
+
+<p float="left" align="middle">
+  <img style="width: 100%; float:left" src="./assets/gendertest1.png">
+  <br>
+  <i>The Malta Independent</i> separated by gender. Females were more likely to look at the news article image featuring Miriam Dalli.
+</p>
+
+<br>
+
+<p float="left" align="middle">
+  <img style="width: 100%; float:left" src="./assets/agetest5.png">
+  <br>
+  <i>The Shift</i> separated by age group. Older participants were more likely to look at the article heading rather than the image.
+</p>
+
+
+<hr>
+
+We compiled statistics about the regions of interest (distracting elements) and carried out a questionnaire to show that the experimental group was less distracted by irrelevant content in general:
+<p float="left" align="middle">
+  <img style="width: 100%; float:left" src="./assets/roistats.png">
+</p>
+
+<p float="left" align="middle">
+  <img style="width: 100%; float:left" src="./assets/Q2ALL.png">
+</p>
+
 
 
 
