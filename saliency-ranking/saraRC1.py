@@ -488,7 +488,7 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
 
     lb = (1, 1, 1)
     ub = (255, 255, 255)
-
+    
     for i in range(n):
         r = int(lb[0] + (ub[0] - lb[0]) * (i / n))
         g = int(lb[1] + (ub[1] - lb[1]) * (i / n))
@@ -497,6 +497,8 @@ def generate_heatmap(img, mode, sorted_seg_scores, segments_coords) -> tuple:
         colors.append((r, g, b))
 
     colors = list(reversed(colors))
+
+
 
     print(colors)
 
